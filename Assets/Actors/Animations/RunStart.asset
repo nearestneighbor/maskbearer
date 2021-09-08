@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c6815f1dcba4249b85d9d88bc4e388, type: 3}
+  m_Name: RunStart
+  m_EditorClassIdentifier: 
+  animationName: RunStart
+  fps: 12
+  frames:
+  - {fileID: 21300000, guid: 98ec5433f357a0a499a03e5dce34984b, type: 3}
+  - {fileID: 21300000, guid: 849b205a61d3add4fbf0587ef1cfbc91, type: 3}
+  - {fileID: 21300000, guid: 01eb6d64b55d36646853c8e6886291c8, type: 3}
+  - {fileID: 21300000, guid: 218f1165966eeb34e9faf1e58cdea871, type: 3}
+  - {fileID: 21300000, guid: e7f71b2a77b2cf44990209287cd1e5ce, type: 3}

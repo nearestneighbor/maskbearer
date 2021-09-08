@@ -11,7 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Areas/Tests/Scenes/Test_02.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+<<<<<<< HEAD
   - enabled: 1
     path: Assets/Areas/Tests/Scenes/Test_01.unity
     guid: bac825ed52a280f48b5bfd7e399d88be
   m_configObjects: {}
+=======
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 969680573d2cd8348b8130402f9b8917, type: 2}
+>>>>>>> 37a3707 (Reworked animation system, implemented new Unity InputSystem)
