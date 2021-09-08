@@ -5696,7 +5696,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
-<<<<<<< HEAD
   m_ActionsAsset: {fileID: -944628639613478452, guid: 5b908f42a21bb804faa9ee013dbf992d, type: 3}
   m_PointAction: {fileID: 6395563015339714298, guid: 5b908f42a21bb804faa9ee013dbf992d, type: 3}
   m_MoveAction: {fileID: -7006712491143280519, guid: 5b908f42a21bb804faa9ee013dbf992d, type: 3}
@@ -5708,19 +5707,6 @@ MonoBehaviour:
   m_ScrollWheelAction: {fileID: 8544791853844697906, guid: 5b908f42a21bb804faa9ee013dbf992d, type: 3}
   m_TrackedDevicePositionAction: {fileID: 7302180005005930450, guid: 5b908f42a21bb804faa9ee013dbf992d, type: 3}
   m_TrackedDeviceOrientationAction: {fileID: 7809786830413805934, guid: 5b908f42a21bb804faa9ee013dbf992d, type: 3}
-=======
-  m_ActionsAsset: {fileID: -944628639613478452, guid: 017eccfa0b1105c4d8c41d459793befc, type: 3}
-  m_PointAction: {fileID: 6395563015339714298, guid: 017eccfa0b1105c4d8c41d459793befc, type: 3}
-  m_MoveAction: {fileID: -7006712491143280519, guid: 017eccfa0b1105c4d8c41d459793befc, type: 3}
-  m_SubmitAction: {fileID: -5283990064413143628, guid: 017eccfa0b1105c4d8c41d459793befc, type: 3}
-  m_CancelAction: {fileID: 3795701083531852473, guid: 017eccfa0b1105c4d8c41d459793befc, type: 3}
-  m_LeftClickAction: {fileID: 8875522021552184209, guid: 017eccfa0b1105c4d8c41d459793befc, type: 3}
-  m_MiddleClickAction: {fileID: 654384192470946701, guid: 017eccfa0b1105c4d8c41d459793befc, type: 3}
-  m_RightClickAction: {fileID: 6736019207004676755, guid: 017eccfa0b1105c4d8c41d459793befc, type: 3}
-  m_ScrollWheelAction: {fileID: 8544791853844697906, guid: 017eccfa0b1105c4d8c41d459793befc, type: 3}
-  m_TrackedDevicePositionAction: {fileID: 7302180005005930450, guid: 017eccfa0b1105c4d8c41d459793befc, type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: 7809786830413805934, guid: 017eccfa0b1105c4d8c41d459793befc, type: 3}
->>>>>>> fe7ba3f (Fixed animation errors, tweaked controls)
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
 --- !u!114 &1146137195

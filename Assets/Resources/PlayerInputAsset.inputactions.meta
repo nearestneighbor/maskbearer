@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 5b908f42a21bb804faa9ee013dbf992d
-=======
 guid: 017eccfa0b1105c4d8c41d459793befc
->>>>>>> fe7ba3f (Fixed animation errors, tweaked controls)
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}

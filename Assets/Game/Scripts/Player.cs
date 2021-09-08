@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Controller))]
-[RequireComponent(typeof(PlayerInput))]
 public class Player : MonoBehaviour
 {
     const float accelerationTimeAirborne = 0.1f;
@@ -38,43 +37,36 @@ public class Player : MonoBehaviour
     public Vector2 velocity;
 
     Controller controller;
-    private PlayerInput _input;
 
     [SerializeField]
     new BoxCollider2D collider;
-
-    Transform spriteGroup;
 
     Vector2 forceInputs;
     Timer forceInputsTimer = new Timer();
 
     private SpriteAnimator _anim;
+    private PlayerInputActions _actions;
+
+    private Vector2 movementInput;
+    private float boostDir = 1;
+
+    SpriteFlash spriteFlash;
 
     private void Awake()
     {
-        _anim ??= transform.Find("Sprite").GetComponent<SpriteAnimator>();
-        _input ??= GetComponent<PlayerInput>();
+        _anim ??= transform.Find("Held/Sprite").GetComponent<SpriteAnimator>();
 
         _anim.AnimationFinished += OnAnimationFinish;
-    }
 
-    void Start()
-    {
-        _anim ??= heldTransform.Find("Sprite").GetComponent<SpriteAnimator>();
-        _input ??= GetComponent<PlayerInput>();
-
-        _anim.AnimationFinished += OnAnimationFinish;
+        _actions ??= new PlayerInputActions();
 
         spriteFlash = GetComponent<SpriteFlash>();
-        
+
         controller = GetComponent<Controller>();
     }
 
-    public Vector2 input;
     void Update() {
-        //input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        if (forceInputsTimer) input = forceInputs;
-        movementInput = controllerInput;
+        movementInput = _actions.Player.Direction.ReadValue<Vector2>();
         if (forceInputsTimer) movementInput = forceInputs;
 
         if (controller.collisions.below || controller.collisions.above) {
@@ -100,7 +92,8 @@ public class Player : MonoBehaviour
             boostDir = controller.collisions.right ? -1 : 1;
         }
 
-        if (jumpKeyPressed) {
+        if (_justJumped) {
+            _justJumped = false;
             jumpGraceTimer.Start();
         }
 
@@ -149,8 +142,6 @@ public class Player : MonoBehaviour
         coyoteTimer.Update();
 
         velocity.x = movementInput.x * moveSpeed;
-        //float accelTime = controller.collisions.below ? accelerationTimeGrounded : accelerationTimeAirborne;
-        //velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, accelTime);
         bool clinging = (controller.collisions.right && movementInput.x == 1) || (controller.collisions.left && movementInput.x == -1);
 
         float maxFall = clinging ? slowMaxFall : defaultMaxFall;
@@ -200,20 +191,18 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        _input.actions.ToList().ForEach(action => action.Enable());
+        _actions.ToList().ForEach(action => action.Enable());
 
-        _attack.performed += OnAttack;
-        _direction.performed += OnDirection;
-        _jump.performed += OnJump;
+        _actions.Player.Attack.performed += OnAttack;
+        _actions.Player.Jump.performed += OnJump;
     }
 
     private void OnDisable()
     {
-        _input.actions.ToList().ForEach(action => action.Disable());
+        _actions.ToList().ForEach(action => action.Disable());
 
-        _attack.performed -= OnAttack;
-        _direction.performed -= OnDirection;
-        _jump.performed -= OnJump;
+        _actions.Player.Attack.performed -= OnAttack;
+        _actions.Player.Jump.performed -= OnJump;
     }
 
     private void OnAttack(InputAction.CallbackContext ctx)
@@ -221,25 +210,14 @@ public class Player : MonoBehaviour
         Debug.Log("Attack");
     }
 
-    private void OnDirection(InputAction.CallbackContext ctx)
-    {
-        input = ctx.ReadValue<Vector2>();
-    }
-
-
     private bool _jumping;
+    private bool _justJumped;
     private void OnJump(InputAction.CallbackContext ctx)
     {
-        _jumping = ctx.ReadValueAsButton();
+        _jumping = _justJumped = ctx.ReadValueAsButton();
         if (ctx.ReadValueAsButton())
             jumpGraceTimer.Start();
     }
-
-    enum Dir {
-        Left, Right,
-    }
-
-    public SpriteRenderer spriteRenderer;
 
     private void OnAnimationFinish(string animName)
     {
@@ -257,9 +235,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    [SerializeField]
+    Transform heldTransform;
     private void FlipScale() {
-        var localScale = transform.localScale;
+        var localScale = heldTransform.transform.localScale;
         localScale.x *= -1;
-        transform.localScale = localScale;
+        heldTransform.localScale = localScale;
     }
 }
