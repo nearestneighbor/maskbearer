@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c6815f1dcba4249b85d9d88bc4e388, type: 3}
+  m_Name: IdleUp
+  m_EditorClassIdentifier: 
+  animationName: IdleUp
+  looping: 1
+  fps: 12
+  frames:
+  - {fileID: 21300000, guid: f4749f7c1ef83464bb36d806152f50f9, type: 3}
+  - {fileID: 21300000, guid: 20f602a4a49a9c44aa1937c098dc3341, type: 3}
+  - {fileID: 21300000, guid: ee7ba12aac3fa9149a93c10ac8d8e3b8, type: 3}
+  - {fileID: 21300000, guid: 047b5d4e002564d4cba67b9fe3b59fdc, type: 3}
+  - {fileID: 21300000, guid: 9376b681e0d038b4f81148dede9f490b, type: 3}
+  - {fileID: 21300000, guid: d9aa6dfa8c1650543a1ac22ff4683ccb, type: 3}
