@@ -56,7 +56,6 @@ public class Player : MonoBehaviour
     public Vector2 input;
     void Update(){
         input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        Debug.Log($"Input: {input.x}, {input.y}");
         if (forceInputsTimer) input = forceInputs;
 
         if (controller.collisions.below || controller.collisions.above) {
