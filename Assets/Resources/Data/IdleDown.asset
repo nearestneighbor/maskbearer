@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81833def57b136a41b1ca44c4961a105, type: 3}
+  m_Name: IdleDown
+  m_EditorClassIdentifier: 
+  path: Art/Maskbearer/Maskbearer Sprites/idle down
+  sprites:
+  - {fileID: 21300000, guid: 9967e36083b1a884ba1c31a69a77cc6f, type: 3}
+  - {fileID: 21300000, guid: b2d9270713f42be458c926cc18ee0efe, type: 3}
+  - {fileID: 21300000, guid: 416da5b6fad796b42baf2284a8a80818, type: 3}
+  - {fileID: 21300000, guid: 2df617bb98ee9b842a649a2a01cc5048, type: 3}
+  - {fileID: 21300000, guid: ebc870fcab9500d4c88bc6be9a25337a, type: 3}
+  - {fileID: 21300000, guid: 9be276d649f6b704d8229b9797244c80, type: 3}
