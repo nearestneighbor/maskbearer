@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 74107ddc8ada7c746b183ae23a328b68
+=======
+guid: e47a2b9fbce10364fb2913868ad74a6f
+>>>>>>> 365743b (Reworked animation system, implemented new Unity InputSystem)
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

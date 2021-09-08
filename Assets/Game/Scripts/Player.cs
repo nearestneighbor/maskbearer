@@ -50,18 +50,15 @@ public class Player : MonoBehaviour
 
     private SpriteAnimator _anim;
 
-    public Vector2 controllerInput;
-    
-    Keyboard keyboard;
-    Gamepad gamepad;
-    private bool jumpKeyPressed, jumpKeyDown;
-    private bool attackKeyPressed, attackKeyDown;
-    private Vector2 movementInput;
-    private float boostDir = 1;
-
-    SpriteFlash spriteFlash; 
-
     private void Awake()
+    {
+        _anim ??= transform.Find("Sprite").GetComponent<SpriteAnimator>();
+        _input ??= GetComponent<PlayerInput>();
+
+        _anim.AnimationFinished += OnAnimationFinish;
+    }
+
+    void Start()
     {
         _anim ??= heldTransform.Find("Sprite").GetComponent<SpriteAnimator>();
         _input ??= GetComponent<PlayerInput>();
@@ -73,31 +70,10 @@ public class Player : MonoBehaviour
         controller = GetComponent<Controller>();
     }
 
-    void Start()
-    {
-        StartInputs();
-    }
-
-    void StartInputs(){
-        gamepad = InputSystem.GetDevice<Gamepad>();
-        keyboard = InputSystem.GetDevice<Keyboard>();
-    }
-    void UpdateInputs(){
-        jumpKeyPressed = (keyboard?.zKey.wasPressedThisFrame ?? false) || (gamepad?.aButton.wasPressedThisFrame ?? false);
-        jumpKeyDown = (keyboard?.zKey.isPressed ?? false) || (gamepad?.aButton.isPressed ?? false);
-
-        attackKeyPressed = (keyboard?.xKey.wasPressedThisFrame ?? false) || (gamepad?.yButton.wasPressedThisFrame ?? false);
-        attackKeyDown = (keyboard?.xKey.isPressed ?? false) || (gamepad?.yButton.isPressed ?? false);
-        
-        controllerInput = Vector2.zero;
-        if ((keyboard?.leftArrowKey.isPressed ?? false) || (gamepad?.buttonWest.isPressed ?? false) || (gamepad?.leftStick.left.isPressed ?? false)) controllerInput.x--;
-        if ((keyboard?.rightArrowKey.isPressed ?? false) || (gamepad?.buttonEast.isPressed ?? false) || (gamepad?.leftStick.right.isPressed ?? false)) controllerInput.x++;
-        if ((keyboard?.upArrowKey.isPressed ?? false) || (gamepad?.buttonNorth.isPressed ?? false) || (gamepad?.leftStick.up.isPressed ?? false)) controllerInput.y++;
-        if ((keyboard?.downArrowKey.isPressed ?? false) || (gamepad?.buttonSouth.isPressed ?? false) || (gamepad?.leftStick.down.isPressed ?? false)) controllerInput.y--;
-    }
-
+    public Vector2 input;
     void Update() {
-        UpdateInputs();
+        //input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        if (forceInputsTimer) input = forceInputs;
         movementInput = controllerInput;
         if (forceInputsTimer) movementInput = forceInputs;
 
@@ -142,9 +118,8 @@ public class Player : MonoBehaviour
             forceInputsTimer.Start();
         }
 
-        
         if (varJumpTimer) {
-            if (jumpKeyDown) {
+            if (_jumping) {
                 velocity.y = jumpVelocity;
                 varJumpTimer.Update();
             }
@@ -153,9 +128,6 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (attackKeyPressed) {
-            spriteFlash.Flash(0.25f, 0.25f);
-        }
 
         RaycastHit2D hit = Physics2D.BoxCast(
             transform.position, collider.bounds.size, 0, Vector2.zero, 0, enemyMask);
@@ -226,6 +198,43 @@ public class Player : MonoBehaviour
         _anim.AnimationFinished -= OnAnimationFinish;
     }
 
+    private void OnEnable()
+    {
+        _input.actions.ToList().ForEach(action => { Debug.Log(action.name); action.Enable(); });
+
+        _attack.performed += OnAttack;
+        _direction.performed += OnDirection;
+        _jump.performed += OnJump;
+    }
+
+    private void OnDisable()
+    {
+        _input.actions.ToList().ForEach(action => action.Disable());
+
+        _attack.performed -= OnAttack;
+        _direction.performed -= OnDirection;
+        _jump.performed -= OnJump;
+    }
+
+    private void OnAttack(InputAction.CallbackContext ctx)
+    {
+        Debug.Log("Attack");
+    }
+
+    private void OnDirection(InputAction.CallbackContext ctx)
+    {
+        input = ctx.ReadValue<Vector2>();
+    }
+
+
+    private bool _jumping;
+    private void OnJump(InputAction.CallbackContext ctx)
+    {
+        _jumping = ctx.ReadValueAsButton();
+        if (ctx.ReadValueAsButton())
+            jumpGraceTimer.Start();
+    }
+
     enum Dir {
         Left, Right,
     }
@@ -236,24 +245,22 @@ public class Player : MonoBehaviour
     {
         switch (animName)
         {
-            case "JumpMid":
-                _anim.Play("Fall");
+            case "RunStart":
+                _anim.Play("Run");
                 break;
             case "RunStop":
                 _anim.Play("Idle");
                 break;
             case "Turn":
-                _anim.Play(Mathf.Abs(velocity.x) > 0.1f ? "Run" : "RunStop");
+                FlipInNextFrame(velocity.x < 0);
+                _anim.Play("Run");
+                break;
+            case "JumpUp":
+                _anim.Play("JumpMid");
+                break;
+            case "JumpDown":
+                _anim.Play("JumpDownLast");
                 break;
         }
-    }
-
-    [SerializeField]
-    Transform heldTransform;
-    private void FlipScale() {
-        var heldScale = heldTransform.localScale;
-        heldScale.x *= -1;
-        heldTransform.localScale = heldScale;
-
     }
 }

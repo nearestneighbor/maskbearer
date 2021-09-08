@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: f96a93f0028a2e34f8548802265daab1
+=======
+guid: 46ddae9f8d7ea9644b9f5939d4e02310
+>>>>>>> 365743b (Reworked animation system, implemented new Unity InputSystem)
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000

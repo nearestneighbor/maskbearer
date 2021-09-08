@@ -24515,6 +24515,7 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+<<<<<<< HEAD
     - target: {fileID: 1436546139465781417, guid: 67722c462f458ee4590a5a53ae8a1643, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -24526,6 +24527,11 @@ PrefabInstance:
     - target: {fileID: 3049367128450224272, guid: 67722c462f458ee4590a5a53ae8a1643, type: 3}
       propertyPath: m_RootOrder
       value: 4
+=======
+    - target: {fileID: 3049367128450224272, guid: 67722c462f458ee4590a5a53ae8a1643, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+>>>>>>> 365743b (Reworked animation system, implemented new Unity InputSystem)
       objectReference: {fileID: 0}
     - target: {fileID: 3049367128450224272, guid: 67722c462f458ee4590a5a53ae8a1643, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24573,8 +24579,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67722c462f458ee4590a5a53ae8a1643, type: 3}
+<<<<<<< HEAD
 --- !u!4 &3049367129408048329 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1436546139465781417, guid: 67722c462f458ee4590a5a53ae8a1643, type: 3}
   m_PrefabInstance: {fileID: 3049367129408048328}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> 365743b (Reworked animation system, implemented new Unity InputSystem)
