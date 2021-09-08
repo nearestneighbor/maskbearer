@@ -654,7 +654,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
 <<<<<<< HEAD
+<<<<<<< HEAD
   activeInputHandler: 2
+=======
+  activeInputHandler: 1
+>>>>>>> 37a3707 (Reworked animation system, implemented new Unity InputSystem)
 =======
   activeInputHandler: 1
 >>>>>>> 37a3707 (Reworked animation system, implemented new Unity InputSystem)
