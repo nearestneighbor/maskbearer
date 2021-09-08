@@ -6,9 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(Controller))]
 public class Player : MonoBehaviour
 {
-    const float accelerationTimeAirborne = 0.2f;
+    const float accelerationTimeAirborne = 0.1f;
        
-    const float accelerationTimeGrounded = 0.1f;
+    const float accelerationTimeGrounded = 0.05f;
     
     const float gravity = -50f;
 
@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
         input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         if (forceInputsTimer) input = forceInputs;
 
-        if (controller.collisions.below) {
+        if (controller.collisions.below || controller.collisions.above) {
             velocity.y = 0;
             varJumpTimer.Zero();
         }
@@ -149,9 +149,8 @@ public class Player : MonoBehaviour
         }
         else{
             if (currentState == Anim.JumpDownLast
-                || currentState == Anim.JumpDown 
-                || currentState == Anim.JumpMid){
-                    Play(Anim.Idle);
+                || currentState == Anim.JumpDown){
+                    Play(Anim.JumpMid);
             }
             if (Mathf.Abs(velocity.x) > 0.1f){
                 if (currentState == Anim.Idle || currentState == Anim.RunStop){
@@ -216,13 +215,14 @@ public class Player : MonoBehaviour
         subFrame = 0;
     }
 
-    float seconds_per_frame = 0.1f;
+    float default_seconds_per_frame = 1f/12;
     void AnimationUpdate(){
+        float seconds_per_frame = default_seconds_per_frame;
+        if (currentState == Anim.Turn){
+            seconds_per_frame = 1f/18;
+        }
         subFrame += Time.deltaTime;
         if (subFrame > seconds_per_frame){
-            if (currentState == Anim.Turn){
-                print($"Frame {frame}");
-            }
             spriteRenderer.sprite = currentAnim.sprites[frame];
             if (nextFlip.HasValue) 
             {
@@ -247,6 +247,7 @@ public class Player : MonoBehaviour
         }
         if (currentState == Anim.JumpUp) Play(Anim.JumpMid);
         if (currentState == Anim.JumpDown) Play(Anim.JumpDownLast);
+        if (currentState == Anim.JumpMid && controller.collisions.below) Play(Anim.Idle);
     }
 
 

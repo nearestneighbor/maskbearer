@@ -6,22 +6,23 @@ public class CameraController : MonoBehaviour
 {
     public Player player;
     Vector3 cameraPosition;
-    float cameraDefaultLerpSpeed = 3;
+    float cameraDefaultHLerpSpeed = 5;
+    float cameraDefaultVLerpSpeed = 8;
     Vector3 targetPosition;
     void Start(){
         cameraPosition = transform.position;
     }
 
     void Update(){
-        float hspeed = cameraDefaultLerpSpeed;
-        float vspeed = cameraDefaultLerpSpeed;
+        float hspeed = cameraDefaultHLerpSpeed;
+        float vspeed = cameraDefaultVLerpSpeed;
         targetPosition = player.transform.position;
         targetPosition.y += 1.5f;
         // targetPosition.x += 3 * (player.spriteRenderer.flipX?-1:1);
         
         if (cameraPosition.y > targetPosition.y){
             if (player.velocity.y == player.defaultMaxFall){
-                vspeed *= 5;
+                vspeed *= 1;
             }
             else if (player.velocity.y < player.defaultMaxFall){
                 vspeed *= 20;
