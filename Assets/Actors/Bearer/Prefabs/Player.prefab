@@ -1,5 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+<<<<<<< HEAD
 --- !u!1 &1227424703816187566
 GameObject:
   m_ObjectHideFlags: 0
@@ -32,6 +33,8 @@ Transform:
   m_Father: {fileID: 3049367128450224272}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> fe7ba3f (Fixed animation errors, tweaked controls)
 --- !u!1 &3049367128080458839
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,11 +60,19 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3049367128080458839}
+<<<<<<< HEAD
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4169506398698223111}
+=======
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3049367128450224272}
+>>>>>>> fe7ba3f (Fixed animation errors, tweaked controls)
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3049367128080458857
@@ -83,7 +94,11 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
+<<<<<<< HEAD
   - {fileID: 2100000, guid: c042e0646b88d8e40a78ed11b1c19f42, type: 2}
+=======
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+>>>>>>> fe7ba3f (Fixed animation errors, tweaked controls)
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -150,8 +165,11 @@ GameObject:
   - component: {fileID: 121450330288798274}
   - component: {fileID: 8548369538716174710}
   - component: {fileID: 7860077972398594010}
+<<<<<<< HEAD
   - component: {fileID: 7669847953389311572}
   - component: {fileID: 6653747635975792059}
+=======
+>>>>>>> fe7ba3f (Fixed animation errors, tweaked controls)
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -170,8 +188,13 @@ Transform:
   m_LocalPosition: {x: -2.092, y: -2.234, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+<<<<<<< HEAD
   - {fileID: 4169506398698223111}
   - {fileID: 1436546139465781417}
+=======
+  - {fileID: 3049367128862125875}
+  - {fileID: 3049367128080458856}
+>>>>>>> fe7ba3f (Fixed animation errors, tweaked controls)
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -212,6 +235,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9a310abe599a64f9b95a4726c2c238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
+=======
+  player: {fileID: 7860077972398594010}
+>>>>>>> fe7ba3f (Fixed animation errors, tweaked controls)
 --- !u!114 &8548369538716174710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,6 +276,7 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 72c5d044-ecda-46d4-a0f2-fca934fc730a
     m_ActionName: Player/Direction[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+<<<<<<< HEAD
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 1af0cca1-9c21-4577-b443-b1264a2d3e0c
@@ -289,6 +317,8 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 1f29ecca-7c87-4951-a179-7d36734778af
     m_ActionName: UI/TrackedDeviceOrientation
+=======
+>>>>>>> fe7ba3f (Fixed animation errors, tweaked controls)
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -311,6 +341,7 @@ MonoBehaviour:
     m_Bits: 64
   velocity: {x: 0, y: 0}
   collider: {fileID: 3049367128862125874}
+<<<<<<< HEAD
   controllerInput: {x: 0, y: 0}
   spriteRenderer: {fileID: 3049367128080458857}
   heldTransform: {fileID: 4169506398698223111}
@@ -378,6 +409,10 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+=======
+  input: {x: 0, y: 0}
+  spriteRenderer: {fileID: 3049367128080458857}
+>>>>>>> fe7ba3f (Fixed animation errors, tweaked controls)
 --- !u!1 &3049367128862125873
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,11 +437,19 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3049367128862125873}
+<<<<<<< HEAD
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.01999998, y: -0.42000008, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4169506398698223111}
+=======
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.02, y: -0.42, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3049367128450224272}
+>>>>>>> fe7ba3f (Fixed animation errors, tweaked controls)
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &3049367128862125874
@@ -435,6 +478,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.50589967, y: 1.3560665}
   m_EdgeRadius: 0
+<<<<<<< HEAD
 --- !u!1 &4732114108530275544
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,3 +509,5 @@ Transform:
   m_Father: {fileID: 3049367128450224272}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> fe7ba3f (Fixed animation errors, tweaked controls)

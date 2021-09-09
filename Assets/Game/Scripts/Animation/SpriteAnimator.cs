@@ -37,7 +37,6 @@ public class SpriteAnimator : MonoBehaviour
     {
         _currentAnimation.Stop();
     }
-
     public void Play(string animName, int startFrame = 0, float timeScale = 1)
     {
         var animation = animations.First(anim => anim.animationName == animName);

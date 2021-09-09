@@ -1,5 +1,17 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 688faa2b76199b14aa4c0d2a845d5298
+=======
+<<<<<<<< HEAD:Assets/Actors/Animations/IdleDown.asset.meta
+<<<<<<< HEAD
+guid: 235e92bf0a7a4cf4280d3957dd6f61a1
+=======
+guid: fe85eb429cd77e743b912b65262b27b5
+>>>>>>> 365743b (Reworked animation system, implemented new Unity InputSystem)
+========
+guid: 688faa2b76199b14aa4c0d2a845d5298
+>>>>>>>> fe7ba3f (Fixed animation errors, tweaked controls):Assets/Actors/Bearer/Animations/Jump.asset.meta
+>>>>>>> fe7ba3f (Fixed animation errors, tweaked controls)
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000

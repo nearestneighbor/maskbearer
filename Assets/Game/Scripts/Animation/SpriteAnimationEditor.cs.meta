@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: d5a68eb32338ddb42a7068f28c7d7a06
+=======
+<<<<<<< HEAD:Assets/Actors/Bearer/Weapons/Scripts/EnemyDamager.cs.meta
+guid: 44d5cdf0d7038624e867d2c4db54f100
+=======
+guid: d5a68eb32338ddb42a7068f28c7d7a06
+>>>>>>> fe7ba3f (Fixed animation errors, tweaked controls):Assets/Game/Scripts/Animation/SpriteAnimationEditor.cs.meta
+>>>>>>> fe7ba3f (Fixed animation errors, tweaked controls)
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

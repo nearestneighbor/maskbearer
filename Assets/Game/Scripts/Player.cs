@@ -200,7 +200,7 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        _input.actions.ToList().ForEach(action => { Debug.Log(action.name); action.Enable(); });
+        _input.actions.ToList().ForEach(action => action.Enable());
 
         _attack.performed += OnAttack;
         _direction.performed += OnDirection;
@@ -245,22 +245,21 @@ public class Player : MonoBehaviour
     {
         switch (animName)
         {
-            case "RunStart":
-                _anim.Play("Run");
+            case "JumpMid":
+                _anim.Play("Fall");
                 break;
             case "RunStop":
                 _anim.Play("Idle");
                 break;
             case "Turn":
-                FlipInNextFrame(velocity.x < 0);
-                _anim.Play("Run");
-                break;
-            case "JumpUp":
-                _anim.Play("JumpMid");
-                break;
-            case "JumpDown":
-                _anim.Play("JumpDownLast");
+                _anim.Play(Mathf.Abs(velocity.x) > 0.1f ? "Run" : "RunStop");
                 break;
         }
+    }
+
+    private void FlipScale() {
+        var localScale = transform.localScale;
+        localScale.x *= -1;
+        transform.localScale = localScale;
     }
 }
