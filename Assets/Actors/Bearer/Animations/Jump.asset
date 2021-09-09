@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c6815f1dcba4249b85d9d88bc4e388, type: 3}
-  m_Name: JumpDownLast
+  m_Name: Jump
   m_EditorClassIdentifier: 
-  animationName: JumpDownLast
+  animationName: Jump
   looping: 0
+  loopStart: 0
   fps: 12
   frames:
-  - {fileID: 21300000, guid: fd77157975fe23d4bb157fb3c46ab23e, type: 3}
+  - {fileID: 21300000, guid: 33ac584748cbd204ca90ab211c2586c6, type: 3}

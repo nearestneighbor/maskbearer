@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81833def57b136a41b1ca44c4961a105, type: 3}
+  m_Script: {fileID: 11500000, guid: 76c6815f1dcba4249b85d9d88bc4e388, type: 3}
   m_Name: Idle
   m_EditorClassIdentifier: 
-  folder: {fileID: 102900000, guid: 4496c57baea4fe747ba9202cc7f5f80e, type: 3}
-  sprites:
+  animationName: Idle
+  looping: 1
+  fps: 12
+  frames:
   - {fileID: 21300000, guid: f543e41dbd18f644283b5d94d1577ae0, type: 3}
   - {fileID: 21300000, guid: 4e8063a4ae46e214a99332936c62f42a, type: 3}
   - {fileID: 21300000, guid: fade09c8b9c659e42b0e5a0bdf7f0dcb, type: 3}

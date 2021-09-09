@@ -10,7 +10,7 @@ public class SpriteAnimation : ScriptableObject
     [SerializeField]
     public bool looping;
     [SerializeField]
-    public int? loopStart = null;
+    public int loopStart;
     [SerializeField]
     public int fps;
     [SerializeField]
@@ -20,9 +20,9 @@ public class SpriteAnimation : ScriptableObject
     public int CurrentFrame { get => _currentFrameNumber; }
 
     private bool _playing;
-    public bool Playing { get => _playing; }
+    public bool IsPlaying { get => _playing; }
 
-    private bool _backwards;
+    private float _timeScale;
 
     public delegate void UpdatedFrame(int frameNumber);
     public event UpdatedFrame FrameUpdated;
@@ -32,10 +32,7 @@ public class SpriteAnimation : ScriptableObject
     public event FinishedAnimation AnimationFinished;
     protected virtual void OnAnimationFinish() => AnimationFinished?.Invoke(animationName);
 
-    public float Duration
-    {
-        get => 1.0f / fps * frames.Length;
-    }
+    public float Duration => 1.0f / fps * frames.Length;
 
     private float _frameTime;
 
@@ -48,12 +45,12 @@ public class SpriteAnimation : ScriptableObject
         this.frames = frames;
     }
 
-    public void Update()
+    public void UpdateTime(float deltaTime)
     {
         if (!_playing) return;
 
-        _frameTime += Time.deltaTime;
-        if (_frameTime >= 1.0f / fps)
+        _frameTime += deltaTime;
+        if (_frameTime >= 1 / (fps * Mathf.Abs(_timeScale)))
             UpdateFrame();
     }
 
@@ -61,50 +58,49 @@ public class SpriteAnimation : ScriptableObject
     {
         OnFrameUpdate();
         _frameTime = 0;
-        _currentFrameNumber += _backwards ? -1 : 1;
-        if (!_backwards)
+        if (_timeScale > 0)
         {
+            _currentFrameNumber++;
             if (_currentFrameNumber >= frames.Length)
             {
-                if (looping) _currentFrameNumber = loopStart.HasValue ? loopStart.Value : 0;
                 OnAnimationFinish();
+                if (looping)
+                {
+                    _currentFrameNumber = Mathf.Clamp(loopStart, 0, frames.Length - 1);
+                }
+                else
+                {
+                    _currentFrameNumber = frames.Length - 1;
+                    _playing = false;
+                }
             }
         }
         else
         {
+            _currentFrameNumber--;
             if (_currentFrameNumber < 0)
             {
-                if (looping) _currentFrameNumber = loopStart.HasValue ? loopStart.Value : frames.Length - 1;
                 OnAnimationFinish();
+                if (looping)
+                {
+                    _currentFrameNumber = Mathf.Clamp(loopStart, 0, frames.Length - 1);
+                }
+                else
+                {
+                    _currentFrameNumber = 0;
+                    _playing = false;
+                }
             }
         }
     }
 
-    public void Play()
+    public void Play(int startFrame = 0, float timeScale = 1)
     {
-        PlayInternal();
-    }
-
-    public void PlayBackwards()
-    {
-        PlayInternal(0, true);
-    }
-
-    public void PlayFromFrame(int startFrame)
-    {
-        PlayInternal(startFrame);
-    }
-
-    public void PlayFromFrameBackwards(int startFrame)
-    {
-        PlayInternal(startFrame, true);
-    }
-
-    private void PlayInternal(int startFrame = 0, bool backwards = false)
-    {
-        _backwards = backwards;
-        _playing = true;
         _currentFrameNumber = startFrame;
+        _frameTime = 0;
+        _playing = true;
+        _timeScale = timeScale;
+        OnFrameUpdate();
     }
 
     public void Stop()

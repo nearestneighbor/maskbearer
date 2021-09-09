@@ -9,11 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81833def57b136a41b1ca44c4961a105, type: 3}
+  m_Script: {fileID: 11500000, guid: 76c6815f1dcba4249b85d9d88bc4e388, type: 3}
   m_Name: Run
   m_EditorClassIdentifier: 
-  folder: {fileID: 102900000, guid: 1edeadc2e311c644b9eae20433a92753, type: 3}
-  sprites:
+  animationName: Run
+  looping: 1
+  loopStart: 5
+  fps: 12
+  frames:
+  - {fileID: 21300000, guid: 98ec5433f357a0a499a03e5dce34984b, type: 3}
+  - {fileID: 21300000, guid: 849b205a61d3add4fbf0587ef1cfbc91, type: 3}
+  - {fileID: 21300000, guid: 01eb6d64b55d36646853c8e6886291c8, type: 3}
+  - {fileID: 21300000, guid: 218f1165966eeb34e9faf1e58cdea871, type: 3}
+  - {fileID: 21300000, guid: e7f71b2a77b2cf44990209287cd1e5ce, type: 3}
   - {fileID: 21300000, guid: ac8e3ad7f03e0a04ab296c6cbcf26517, type: 3}
   - {fileID: 21300000, guid: 67eb10539f706e84b859d781969fecf2, type: 3}
   - {fileID: 21300000, guid: 4caf4425542b2634dba7a8f9375d466a, type: 3}
