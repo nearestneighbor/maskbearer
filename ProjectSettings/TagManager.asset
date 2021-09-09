@@ -32,11 +32,11 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - cp-back-0
+  - cp-back-1
+  - cp-front-0
+  - cp-front-1
+  - cp-canvas
   m_SortingLayers:
   - name: Default
     uniqueID: 0
