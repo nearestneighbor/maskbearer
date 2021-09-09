@@ -10,14 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76c6815f1dcba4249b85d9d88bc4e388, type: 3}
-  m_Name: Run
+  m_Name: Fall
   m_EditorClassIdentifier: 
-  animationName: Run
+  animationName: Fall
   looping: 1
+  loopStart: 3
   fps: 12
   frames:
-  - {fileID: 21300000, guid: ac8e3ad7f03e0a04ab296c6cbcf26517, type: 3}
-  - {fileID: 21300000, guid: 67eb10539f706e84b859d781969fecf2, type: 3}
-  - {fileID: 21300000, guid: 4caf4425542b2634dba7a8f9375d466a, type: 3}
-  - {fileID: 21300000, guid: b33fceb4047b89845b3059dafa0f1508, type: 3}
-  - {fileID: 21300000, guid: 11614670e3cf730478dd892a892c6def, type: 3}
+  - {fileID: 21300000, guid: 36d221b4d132a71459ac159d03e7d9ae, type: 3}
+  - {fileID: 21300000, guid: 895a15d23b4d908469841035806e9fa9, type: 3}
+  - {fileID: 21300000, guid: fd77157975fe23d4bb157fb3c46ab23e, type: 3}

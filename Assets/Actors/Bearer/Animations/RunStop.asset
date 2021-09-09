@@ -9,12 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81833def57b136a41b1ca44c4961a105, type: 3}
+  m_Script: {fileID: 11500000, guid: 76c6815f1dcba4249b85d9d88bc4e388, type: 3}
   m_Name: RunStop
   m_EditorClassIdentifier: 
-  folder: {fileID: 102900000, guid: 39ae3bc8d0afd3344989d87777e966b8, type: 3}
-  sprites:
-  - {fileID: 21300000, guid: e1451cf3edf9f3e4b8f42fe2c97580fd, type: 3}
+  animationName: RunStop
+  looping: 0
+  loopStart: 0
+  fps: 24
+  frames:
   - {fileID: 21300000, guid: dbef038f0581a6f489d9c84c058fbd29, type: 3}
   - {fileID: 21300000, guid: 3deda1b7a9e91e74888aaeb5c7b07549, type: 3}
   - {fileID: 21300000, guid: 4b3556c1576fcd64c8ff1a4f8e0e6130, type: 3}

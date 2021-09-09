@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -134,9 +131,9 @@ public class Player : MonoBehaviour
         jumpGraceTimer.Update();
         coyoteTimer.Update();
 
-        float targetVelocityX = input.x * moveSpeed;
-        float accelTime = controller.collisions.below ? accelerationTimeGrounded : accelerationTimeAirborne;
-        velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, accelTime);
+        velocity.x = input.x * moveSpeed;
+        //float accelTime = controller.collisions.below ? accelerationTimeGrounded : accelerationTimeAirborne;
+        //velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, accelTime);
         bool clinging = (controller.collisions.right && input.x == 1) || (controller.collisions.left && input.x == -1);
 
         float maxFall = clinging ? slowMaxFall : defaultMaxFall;
@@ -146,49 +143,42 @@ public class Player : MonoBehaviour
 
 
         if (!controller.collisions.below) {
-            spriteRenderer.flipX = velocity.x < 0;
-            if (velocity.y > 0) {
-                if (_anim.CurrentAnimation.animationName != "JumpMid") {
-                    _anim.Play("JumpUp");
-                }
+            if (transform.localScale.x < 0 && input.x > 0 ||
+            transform.localScale.x > 0 && input.x < 0)
+                FlipScale();
+            if (velocity.y >= 8) {
+                _anim.Play("Jump");
             }
-            else if (Mathf.Abs(velocity.y) < 0.1f) {
+            else if (velocity.y < 8 && velocity.y >= 0){
                 _anim.Play("JumpMid");
             }
-            else {
-                _anim.Play("JumpDown");
+            else if (velocity.y < 0 && _anim.CurrentAnimation.animationName != "JumpMid") {
+                _anim.Play("Fall");
             }
         }
         else {
-            if (_anim.CurrentAnimation.animationName == "JumpDownLast"
-                || _anim.CurrentAnimation.animationName == "JumpDown"
-                || _anim.CurrentAnimation.animationName == "JumpMid") {
+            if (transform.localScale.x < 0 && input.x > 0 ||
+                    transform.localScale.x > 0 && input.x < 0){
+                FlipScale();
+                _anim.Stop();
+                _anim.Play("Turn");
+            }
+            else if (Mathf.Abs(velocity.x) > 0.1f){
+                if (_anim.CurrentAnimation.animationName != "Turn"){
+                    _anim.Play("Run");
+                }
+            }
+            else if (input.x == 0 && _anim.CurrentAnimation.animationName == "Run")
+                _anim.Play("RunStop");
+            else if (_anim.CurrentAnimation.animationName != "RunStop" &&
+                     _anim.CurrentAnimation.animationName != "Turn")
                 _anim.Play("Idle");
-            }
-            if (Mathf.Abs(velocity.x) > 0.1f) {
-                if (_anim.CurrentAnimation.animationName == "Idle" || _anim.CurrentAnimation.animationName == "RunStop") {
-                    spriteRenderer.flipX = velocity.x < 0;
-                    _anim.Play("RunStart");
-                }
-                else {
-                    if (velocity.x < 0 && input.x > 0) _anim.Play("Turn"); ;
-                    if (velocity.x > 0 && input.x < 0) _anim.Play("Turn"); ;
-                }
-            }
-            else if (input.x == 0) {
-                if (_anim.CurrentAnimation.animationName == "Run") {
-                    _anim.Play("RunStop");
-                }
-                if (_anim.CurrentAnimation.animationName == "RunStart") {
-                    _anim.Play("Idle");
-                }
-            }
         }
     }
 
     private void OnEnable()
     {
-        _input.actions.ToList().ForEach(action => { Debug.Log(action.name); action.Enable(); });
+        _input.actions.ToList().ForEach(action => action.Enable());
 
         _attack.performed += OnAttack;
         _direction.performed += OnDirection;
@@ -247,27 +237,21 @@ public class Player : MonoBehaviour
     {
         switch (animName)
         {
-            case "RunStart":
-                _anim.Play("Run");
+            case "JumpMid":
+                _anim.Play("Fall");
                 break;
             case "RunStop":
                 _anim.Play("Idle");
                 break;
             case "Turn":
-                FlipInNextFrame(velocity.x < 0);
-                _anim.Play("Run");
-                break;
-            case "JumpUp":
-                _anim.Play("JumpMid");
-                break;
-            case "JumpDown":
-                _anim.Play("JumpDownLast");
+                _anim.Play(Mathf.Abs(velocity.x) > 0.1f ? "Run" : "RunStop");
                 break;
         }
     }
 
-    bool? nextFlip = null;
-    void FlipInNextFrame(bool flip) {
-        nextFlip = flip;
+    private void FlipScale() {
+        var localScale = transform.localScale;
+        localScale.x *= -1;
+        transform.localScale = localScale;
     }
 }

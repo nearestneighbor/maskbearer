@@ -1,8 +1,6 @@
-using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 [CustomEditor(typeof(SpriteAnimation))]
 public class SpriteAnimationEditor : Editor
@@ -14,8 +12,6 @@ public class SpriteAnimationEditor : Editor
         base.OnInspectorGUI();
 
         var anim = (SpriteAnimation)target;
-
-        anim.loopStart = EditorGUILayout.IntField("Loop Start", anim.loopStart.HasValue ? anim.loopStart.Value : 0);
 
         spritesPath = EditorGUILayout.TextField("Path of Sprites to Load", spritesPath);
 

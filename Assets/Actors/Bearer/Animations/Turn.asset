@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81833def57b136a41b1ca44c4961a105, type: 3}
+  m_Script: {fileID: 11500000, guid: 76c6815f1dcba4249b85d9d88bc4e388, type: 3}
   m_Name: Turn
   m_EditorClassIdentifier: 
-  folder: {fileID: 102900000, guid: 88ee1cb7f00e13e4bb221da89d326292, type: 3}
-  sprites:
+  animationName: Turn
+  looping: 0
+  loopStart: 0
+  fps: 24
+  frames:
   - {fileID: 21300000, guid: 5e94cc9740fb2404ab65ccf88f69dea8, type: 3}
-  - {fileID: 21300000, guid: e0b07942669c6574894b12beba6a05b8, type: 3}
   - {fileID: 21300000, guid: 95a5b99b4a2055a4b99e9f60fdb838b8, type: 3}
-  - {fileID: 21300000, guid: 43ddd3a6ce3458c4f9142adf5884605a, type: 3}

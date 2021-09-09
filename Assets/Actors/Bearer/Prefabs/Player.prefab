@@ -96,15 +96,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animations:
+  - {fileID: 11400000, guid: 5e82f0a853da4d5409b481ca58c64068, type: 2}
   - {fileID: 11400000, guid: 1302051b0423f5f448a40824284ba719, type: 2}
   - {fileID: 11400000, guid: fe85eb429cd77e743b912b65262b27b5, type: 2}
   - {fileID: 11400000, guid: dbfcc6cea095ea542a4461e848d612fc, type: 2}
-  - {fileID: 11400000, guid: 502d91c03c8acf9478e10d8b6a483b8c, type: 2}
-  - {fileID: 11400000, guid: fc6a035639ece9045a9a561a3759466e, type: 2}
-  - {fileID: 11400000, guid: e233662da79041c4b868d3bb1b859c9d, type: 2}
-  - {fileID: 11400000, guid: 76fa0b870ddf00d4096ac15119943dd8, type: 2}
+  - {fileID: 11400000, guid: 688faa2b76199b14aa4c0d2a845d5298, type: 2}
+  - {fileID: 11400000, guid: a44c3c0e528f10f468977006026641bc, type: 2}
   - {fileID: 11400000, guid: 7049e974a92e5634bb71df8297b8ce8d, type: 2}
-  - {fileID: 11400000, guid: a13dadf066c7a744290ed8d3782e4c11, type: 2}
   - {fileID: 11400000, guid: 46ddae9f8d7ea9644b9f5939d4e02310, type: 2}
   - {fileID: 11400000, guid: 557c02cbb408cff49a36f97701b78ef0, type: 2}
 --- !u!1 &3049367128450224285
@@ -117,6 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3049367128450224272}
   - component: {fileID: 3049367128450224287}
+  - component: {fileID: 121450330288798274}
   - component: {fileID: 8548369538716174710}
   - component: {fileID: 7860077972398594010}
   m_Layer: 0
@@ -167,6 +166,19 @@ MonoBehaviour:
     leftEdge: 0
     rightEdge: 0
   collider: {fileID: 3049367128862125874}
+--- !u!114 &121450330288798274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3049367128450224285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf9a310abe599a64f9b95a4726c2c238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 7860077972398594010}
 --- !u!114 &8548369538716174710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,8 +236,6 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 64
-  defaultMaxFall: -15
-  extraMaxFall: -30
   velocity: {x: 0, y: 0}
   collider: {fileID: 3049367128862125874}
   input: {x: 0, y: 0}
@@ -274,7 +284,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0064557493, y: 0.17803323}
+  m_Offset: {x: 0.024090886, y: 0.17803323}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -285,5 +295,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4448064, y: 1.3560665}
+  m_Size: {x: 0.50589967, y: 1.3560665}
   m_EdgeRadius: 0
