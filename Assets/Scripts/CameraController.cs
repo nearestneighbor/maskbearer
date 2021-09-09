@@ -19,15 +19,6 @@ public class CameraController : MonoBehaviour
         targetPosition = player.transform.position;
         targetPosition.y += 1.5f;
         // targetPosition.x += 3 * (player.spriteRenderer.flipX?-1:1);
-        
-        if (cameraPosition.y > targetPosition.y){
-            if (player.velocity.y == player.defaultMaxFall){
-                vspeed *= 1;
-            }
-            else if (player.velocity.y < player.defaultMaxFall){
-                vspeed *= 20;
-            }
-        }
 
         cameraPosition.x = Mathf.Lerp(cameraPosition.x, targetPosition.x, hspeed * Time.deltaTime);
         cameraPosition.y = Mathf.Lerp(cameraPosition.y, targetPosition.y, vspeed * Time.deltaTime);

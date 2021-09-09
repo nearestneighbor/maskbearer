@@ -21,8 +21,8 @@ public class Player : MonoBehaviour
     const float jumpHBoost = 0.5f;
     const float wallJumpHBoost = 5f;
 
-    public float defaultMaxFall = -15f;
-    public float extraMaxFall = -30f;
+    const float defaultMaxFall = -15f;
+    const float slowMaxFall = -5f;
 
     const float extraFallAccelFactor = 1.5f;
 
@@ -127,14 +127,16 @@ public class Player : MonoBehaviour
         float targetVelocityX = input.x * moveSpeed;
         float accelTime = controller.collisions.below?accelerationTimeGrounded:accelerationTimeAirborne;
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, accelTime);
-        float maxFall = input.y == -1? extraMaxFall:defaultMaxFall;
+        bool clinging = (controller.collisions.right && input.x == 1) || (controller.collisions.left && input.x == -1);
+        
+        float maxFall = clinging? slowMaxFall:defaultMaxFall;
         float downAccel = input.y == -1? extraFallAccelFactor * gravity: gravity;
         velocity.y = Mathf.Max(velocity.y + downAccel * Time.deltaTime, maxFall);
         controller.Move(velocity * Time.deltaTime);
 
         
         if (!controller.collisions.below){
-            spriteRenderer.flipX = velocity.x < 0;
+            spriteRenderer.flipX = (velocity.x < 0) ^ clinging;
             if (velocity.y > 0){
                 if (currentState != Anim.JumpMid){
                     Play(Anim.JumpUp);
@@ -143,7 +145,7 @@ public class Player : MonoBehaviour
             else if (Mathf.Abs(velocity.y) < 0.1f){
                 Play(Anim.JumpMid);
             }
-            else{
+            else if (currentState != Anim.JumpDownLast){
                 Play(Anim.JumpDown);
             }
         }
@@ -191,6 +193,7 @@ public class Player : MonoBehaviour
         JumpMid,
         JumpDown,
         JumpDownLast,
+        WallClinging,
     }
 
     public List<AnimationData> animationData;
