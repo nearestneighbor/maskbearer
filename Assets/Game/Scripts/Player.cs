@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 
     public LayerMask enemyMask;
 
-    const float jumpVelocity = 9f;
+    const float jumpVelocity = 10f;
 
 
     const float moveSpeed = 6f;
@@ -34,7 +34,6 @@ public class Player : MonoBehaviour
     Timer varJumpTimer = new Timer(.2f);
 
     Timer coyoteTimer = new Timer(.05f);
-    
 
     public Vector2 velocity;
 
