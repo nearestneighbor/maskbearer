@@ -68,6 +68,7 @@ public class Player : MonoBehaviour
 
     public Vector2 controllerInput;
     private Vector2 movementInput;
+    private float boostDir = 1;
     void Update() {
         movementInput = controllerInput;
         if (forceInputsTimer) movementInput = forceInputs;
@@ -92,16 +93,16 @@ public class Player : MonoBehaviour
 
         if (controller.collisions.right || controller.collisions.left){
             wallJumpGraceTimer.Start();
+            boostDir = controller.collisions.right ? -1 : 1;
         }
 
-        // TODO: Use grace timers.
         if (jumpGraceTimer && wallJumpGraceTimer) {
             jumpGraceTimer.Zero();
 
             velocity.y = jumpVelocity;
 
             varJumpTimer.Start();
-            float boostDir = controller.collisions.right ? -1 : 1;
+            
             velocity.x = wallJumpHBoost * boostDir;
             forceInputs.x = boostDir;
             forceInputs.y = 0;
