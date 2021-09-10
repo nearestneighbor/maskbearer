@@ -654,10 +654,14 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
 <<<<<<< HEAD
+<<<<<<< HEAD
   activeInputHandler: 2
 =======
   activeInputHandler: 1
 >>>>>>> 37a3707 (Reworked animation system, implemented new Unity InputSystem)
+=======
+  activeInputHandler: 1
+>>>>>>> 37a3707f7bef7cdf93e681e3e5f0edb1aa92b4c9
   cloudProjectId: 
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
