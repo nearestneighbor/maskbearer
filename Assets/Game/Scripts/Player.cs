@@ -125,7 +125,7 @@ public class Player : MonoBehaviour
                 recoil.x = recoilSpeed;
             }
             recoil.y = recoilSpeed;
-            velocity += recoil;
+            velocity = recoil;
         }
 
         forceInputsTimer.Update();
