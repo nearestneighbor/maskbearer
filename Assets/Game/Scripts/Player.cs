@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
             varJumpTimer.Zero();
         }
         
-        if (Input.GetKeyDown(KeyCode.C)){
+        if (Input.GetKeyDown(KeyCode.C) || Input.GetButtonDown("Jump")){
             jumpGraceTimer.Start();
         }
 
@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
         }
 
         if (varJumpTimer){
-            if (Input.GetKey(KeyCode.C)){
+            if (Input.GetKey(KeyCode.C) || Input.GetButton("Jump")){
                 velocity.y = jumpVelocity;
                 varJumpTimer.Update();
             }
@@ -105,7 +105,6 @@ public class Player : MonoBehaviour
             }
         }
 
-        
         RaycastHit2D hit = Physics2D.BoxCast(
             transform.position, collider.bounds.size,  0,  Vector2.zero, 0, enemyMask);
 

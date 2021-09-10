@@ -1,13 +1,19 @@
 using System.Collections;
+using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class UIMenu : UIManager.UIBehaviour
 {
+    [Header("Parts")]
     [SerializeField] private GameObject _play;
     [SerializeField] private GameObject _quit;
     [SerializeField] private TextMeshProUGUI _version;
+
+    [Header("Data")]
+    [Scene]
+    [SerializeField] private string _levelName;
 
     private void Start()
     {
@@ -35,7 +41,7 @@ public class UIMenu : UIManager.UIBehaviour
     private IEnumerator OnPlayClickCoroutine()
     {
         yield return Get<UICurtain>().ShowAndWait();
-        yield return Main.Level.Load("Test_01");
+        yield return Main.Level.Load(_levelName);
 
         Get<UICurtain>().Hide();
         Get<HUD>().Show();

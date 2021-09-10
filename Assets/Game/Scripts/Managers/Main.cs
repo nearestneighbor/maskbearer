@@ -3,11 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour
 {
+    public static Main Instance { get; private set; }
     public static UIManager UI { get; private set; }
     public static LevelManager Level { get; private set; }
 
     private void Awake()
     {
+        Instance = this;
         UI = GetComponent<UIManager>();
         Level = GetComponent<LevelManager>();
     }
