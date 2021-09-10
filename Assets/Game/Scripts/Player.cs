@@ -201,11 +201,13 @@ public class Player : MonoBehaviour
 
     private void OnAttack(InputAction.CallbackContext ctx)
     {
+        GetComponent<SpriteFlash>().Flash(0.25f, 0.25f);
         Debug.Log("Attack");
     }
 
     private void OnDirection(InputAction.CallbackContext ctx)
     {
+        Debug.Log("Value: " + ctx.ReadValue<Vector2>());
         input = ctx.ReadValue<Vector2>();
     }
 

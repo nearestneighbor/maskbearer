@@ -51,7 +51,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c042e0646b88d8e40a78ed11b1c19f42, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 121450330288798274}
   - component: {fileID: 8548369538716174710}
   - component: {fileID: 7860077972398594010}
+  - component: {fileID: 7669847953389311572}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -216,6 +217,46 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 72c5d044-ecda-46d4-a0f2-fca934fc730a
     m_ActionName: Player/Direction[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1af0cca1-9c21-4577-b443-b1264a2d3e0c
+    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: eb7e4163-a988-41fd-89ac-b5ee6a8b66e6
+    m_ActionName: UI/Submit[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ad0fcef0-fb7a-42bd-a8db-5821fed1cf8f
+    m_ActionName: UI/Cancel[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 35a440d5-3d5a-4431-8c95-79ff48e6d6ac
+    m_ActionName: UI/Point[/Mouse/position,/Pen/position,/Touchscreen/touch0/position,/Touchscreen/touch1/position,/Touchscreen/touch2/position,/Touchscreen/touch3/position,/Touchscreen/touch4/position,/Touchscreen/touch5/position,/Touchscreen/touch6/position,/Touchscreen/touch7/position,/Touchscreen/touch8/position,/Touchscreen/touch9/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 34b6356a-e198-4a9a-8eb7-e033a5c2ed51
+    m_ActionName: UI/Click[/Mouse/leftButton,/Pen/tip,/Touchscreen/touch0/press,/Touchscreen/touch1/press,/Touchscreen/touch2/press,/Touchscreen/touch3/press,/Touchscreen/touch4/press,/Touchscreen/touch5/press,/Touchscreen/touch6/press,/Touchscreen/touch7/press,/Touchscreen/touch8/press,/Touchscreen/touch9/press]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1f4d5e74-9f0f-438e-9145-5d30c2ca571e
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5a9b6e76-4ff6-4291-84eb-6bbc6aef752f
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a69aa359-2e57-4d45-8adb-f76169ec7ff4
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: eeb24c90-517c-4fe8-954e-cecd9f09a2ab
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1f29ecca-7c87-4951-a179-7d36734778af
+    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -240,6 +281,19 @@ MonoBehaviour:
   collider: {fileID: 3049367128862125874}
   input: {x: 0, y: 0}
   spriteRenderer: {fileID: 3049367128080458857}
+--- !u!114 &7669847953389311572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3049367128450224285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3f7fb8f45c6a7842bd83cf959f96260, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRend: {fileID: 3049367128080458857}
 --- !u!1 &3049367128862125873
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ public class SpriteAnimator : MonoBehaviour
     private void Awake()
     {
         _spriteRend ??= GetComponent<SpriteRenderer>();
+        animations = animations?.Select(animation => animation = Instantiate(animation)).ToArray();
     }
 
     private void Start()
@@ -30,6 +31,11 @@ public class SpriteAnimator : MonoBehaviour
         if (!IsPlaying) return;
 
         _currentAnimation?.UpdateTime(Time.deltaTime);
+    }
+
+    private void OnDisable()
+    {
+        _currentAnimation.Stop();
     }
 
     public void Play(string animName, int startFrame = 0, float timeScale = 1)
