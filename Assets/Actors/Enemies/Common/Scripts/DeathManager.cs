@@ -6,14 +6,14 @@ public class DeathManager : MonoBehaviour
     public event DeathEvent Death;
     protected virtual void OnDeath() => Death?.Invoke();
 
-    public GameObject? corpsePrefab;
+    public GameObject corpsePrefab;
     private GameObject _corpseInst;
 
     public void Die()
     {
         OnDeath();
 
-        if (corpsePrefab)
+        if (corpsePrefab != null)
         {
             _corpseInst = Instantiate(corpsePrefab, transform.position, Quaternion.identity);
             var player = FindObjectOfType<Player>();
