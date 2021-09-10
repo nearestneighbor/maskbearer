@@ -111,8 +111,8 @@ public class Controller : MonoBehaviour
         horizontalRayCount = Mathf.Clamp(horizontalRayCount, 2, int.MaxValue);
         verticalRayCount = Mathf.Clamp(verticalRayCount, 2, int.MaxValue);
 
-        horizontalRaySpacing = bounds.size.y / (horizontalRayCount - 1);
-        verticalRaySpacing = bounds.size.x / (verticalRayCount - 1);
+        horizontalRaySpacing = (bounds.size.y) / (horizontalRayCount - 1);
+        verticalRaySpacing = (bounds.size.x) / (verticalRayCount - 1);
     }
 
     

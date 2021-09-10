@@ -30,9 +30,11 @@ public class Player : MonoBehaviour
     float velocityXSmoothing;
 
     Timer jumpGraceTimer = new Timer(.05f);
+    Timer wallJumpGraceTimer = new Timer(.05f);
     Timer varJumpTimer = new Timer(.2f);
 
     Timer coyoteTimer = new Timer(.05f);
+    
 
     public Vector2 velocity;
 
@@ -88,8 +90,12 @@ public class Player : MonoBehaviour
             }
         }
 
+        if (controller.collisions.right || controller.collisions.left){
+            wallJumpGraceTimer.Start();
+        }
+
         // TODO: Use grace timers.
-        if (jumpGraceTimer && (controller.collisions.right || controller.collisions.left)) {
+        if (jumpGraceTimer && wallJumpGraceTimer) {
             jumpGraceTimer.Zero();
 
             velocity.y = jumpVelocity;
@@ -128,6 +134,7 @@ public class Player : MonoBehaviour
             velocity = recoil;
         }
 
+        wallJumpGraceTimer.Update();
         forceInputsTimer.Update();
         jumpGraceTimer.Update();
         coyoteTimer.Update();
