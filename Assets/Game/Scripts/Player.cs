@@ -64,10 +64,11 @@ public class Player : MonoBehaviour
         controller = GetComponent<Controller>();
     }
 
-    public Vector2 input;
+    public Vector2 controllerInput;
+    private Vector2 movementInput;
     void Update() {
-        //input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        if (forceInputsTimer) input = forceInputs;
+        movementInput = controllerInput;
+        if (forceInputsTimer) movementInput = forceInputs;
 
         if (controller.collisions.below || controller.collisions.above) {
             velocity.y = 0;
@@ -82,8 +83,8 @@ public class Player : MonoBehaviour
             jumpGraceTimer.Zero();
             velocity.y = jumpVelocity;
             varJumpTimer.Start();
-            if (Mathf.Abs(input.x) > 0) {
-                velocity.x += jumpHBoost * Mathf.Sign(input.x);
+            if (Mathf.Abs(movementInput.x) > 0) {
+                velocity.x += jumpHBoost * Mathf.Sign(movementInput.x);
             }
         }
 
@@ -131,20 +132,20 @@ public class Player : MonoBehaviour
         jumpGraceTimer.Update();
         coyoteTimer.Update();
 
-        velocity.x = input.x * moveSpeed;
+        velocity.x = movementInput.x * moveSpeed;
         //float accelTime = controller.collisions.below ? accelerationTimeGrounded : accelerationTimeAirborne;
         //velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, accelTime);
-        bool clinging = (controller.collisions.right && input.x == 1) || (controller.collisions.left && input.x == -1);
+        bool clinging = (controller.collisions.right && movementInput.x == 1) || (controller.collisions.left && movementInput.x == -1);
 
         float maxFall = clinging ? slowMaxFall : defaultMaxFall;
-        float downAccel = input.y == -1 ? extraFallAccelFactor * gravity : gravity;
+        float downAccel = movementInput.y == -1 ? extraFallAccelFactor * gravity : gravity;
         velocity.y = Mathf.Max(velocity.y + downAccel * Time.deltaTime, maxFall);
         controller.Move(velocity * Time.deltaTime);
 
 
         if (!controller.collisions.below) {
-            if (transform.localScale.x < 0 && input.x > 0 ||
-            transform.localScale.x > 0 && input.x < 0)
+            if (transform.localScale.x < 0 && movementInput.x > 0 ||
+            transform.localScale.x > 0 && movementInput.x < 0)
                 FlipScale();
             if (velocity.y >= 8) {
                 _anim.Play("Jump");
@@ -157,8 +158,8 @@ public class Player : MonoBehaviour
             }
         }
         else {
-            if (transform.localScale.x < 0 && input.x > 0 ||
-                    transform.localScale.x > 0 && input.x < 0){
+            if (transform.localScale.x < 0 && movementInput.x > 0 ||
+                    transform.localScale.x > 0 && movementInput.x < 0){
                 FlipScale();
                 _anim.Stop();
                 _anim.Play("Turn");
@@ -168,7 +169,7 @@ public class Player : MonoBehaviour
                     _anim.Play("Run");
                 }
             }
-            else if (input.x == 0 && _anim.CurrentAnimation.animationName == "Run")
+            else if (movementInput.x == 0 && _anim.CurrentAnimation.animationName == "Run")
                 _anim.Play("RunStop");
             else if (_anim.CurrentAnimation.animationName != "RunStop" &&
                      _anim.CurrentAnimation.animationName != "Turn")
@@ -208,7 +209,7 @@ public class Player : MonoBehaviour
     private void OnDirection(InputAction.CallbackContext ctx)
     {
         Debug.Log("Value: " + ctx.ReadValue<Vector2>());
-        input = ctx.ReadValue<Vector2>();
+        controllerInput = ctx.ReadValue<Vector2>();
     }
 
 
