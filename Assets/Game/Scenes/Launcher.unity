@@ -5249,7 +5249,7 @@ MonoBehaviour:
   - m_TextureName: Default
     m_Culling:
       serializedVersion: 2
-      m_Bits: 9
+      m_Bits: 969
     m_ClippingFrom: 0
     m_ClippingTo: 1000
     m_ColorClear: 1
