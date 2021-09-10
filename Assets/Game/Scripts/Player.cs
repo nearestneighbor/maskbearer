@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        _anim ??= transform.Find("Sprite").GetComponent<SpriteAnimator>();
+        _anim ??= heldTransform.Find("Sprite").GetComponent<SpriteAnimator>();
         _input ??= GetComponent<PlayerInput>();
 
         _anim.AnimationFinished += OnAnimationFinish;
@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
                 recoil.x = recoilSpeed;
             }
             recoil.y = recoilSpeed;
-            velocity = recoil;
+            // velocity = recoil;
         }
 
         wallJumpGraceTimer.Update();
@@ -151,8 +151,8 @@ public class Player : MonoBehaviour
 
 
         if (!controller.collisions.below) {
-            if (transform.localScale.x < 0 && movementInput.x > 0 ||
-            transform.localScale.x > 0 && movementInput.x < 0)
+            if (heldTransform.localScale.x < 0 && movementInput.x > 0 ||
+            heldTransform.localScale.x > 0 && movementInput.x < 0)
                 FlipScale();
             if (velocity.y >= 8) {
                 _anim.Play("Jump");
@@ -165,8 +165,8 @@ public class Player : MonoBehaviour
             }
         }
         else {
-            if (transform.localScale.x < 0 && movementInput.x > 0 ||
-                    transform.localScale.x > 0 && movementInput.x < 0){
+            if (heldTransform.localScale.x < 0 && movementInput.x > 0 ||
+                    heldTransform.localScale.x > 0 && movementInput.x < 0){
                 FlipScale();
                 _anim.Stop();
                 _anim.Play("Turn");
@@ -259,9 +259,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    [SerializeField]
+    Transform heldTransform;
     private void FlipScale() {
-        var localScale = transform.localScale;
-        localScale.x *= -1;
-        transform.localScale = localScale;
+        var heldScale = heldTransform.localScale;
+        heldScale.x *= -1;
+        heldTransform.localScale = heldScale;
+
     }
 }
