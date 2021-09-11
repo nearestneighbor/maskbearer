@@ -6,14 +6,13 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     const float accelerationTimeAirborne = 0.1f;
-       
+
     const float accelerationTimeGrounded = 0.05f;
     const float gravity = -50f;
 
     public LayerMask enemyMask;
 
     const float jumpVelocity = 10f;
-
 
     const float moveSpeed = 6f;
     const float jumpHBoost = 0.5f;
@@ -30,7 +29,7 @@ public class Player : MonoBehaviour
 
     Timer jumpGraceTimer = new Timer(.05f);
     Timer wallJumpGraceTimer = new Timer(.05f);
-    Timer varJumpTimer = new Timer(.2f);
+    Timer varJumpTimer = new Timer(.3f);
 
     Timer coyoteTimer = new Timer(.05f);
 
@@ -51,11 +50,14 @@ public class Player : MonoBehaviour
     private PlayerInputActions _actions;
 
     public Vector2 controllerInput;
-    
+
     private Vector2 movementInput;
     private float boostDir = 1;
 
-    SpriteFlash spriteFlash; 
+    SpriteFlash spriteFlash;
+
+    [SerializeField]
+    private Transform weaponTransform;
 
     private void Awake()
     {
@@ -65,51 +67,69 @@ public class Player : MonoBehaviour
         _anim.AnimationFinished += OnAnimationFinish;
 
         spriteFlash = GetComponentInChildren<SpriteFlash>();
-        
+
         controller = GetComponent<Controller>();
 
         _actions = new PlayerInputActions();
     }
-    
-    void Update() {
-        movementInput = _actions.Player.Direction.ReadValue<Vector2>();
+
+    void Update()
+    {
+        wallJumpGraceTimer.Update();
+        forceInputsTimer.Update();
+        jumpGraceTimer.Update();
+        coyoteTimer.Update();
+        attackCooldownTimer.Update();
+        attackTimer.Update();
+
+        var control = _actions.Player.Direction.ReadValue<Vector2>();
+        controllerInput.x = Mathf.Abs(control.x) > 0.5f ? Mathf.Sign(control.x) : 0;
+        controllerInput.y = Mathf.Abs(control.y) > 0.5f ? Mathf.Sign(control.y) : 0;
+        movementInput = controllerInput;
         if (forceInputsTimer) movementInput = forceInputs;
 
-        if (controller.collisions.below || controller.collisions.above) {
+        if (controller.collisions.below || controller.collisions.above)
+        {
             velocity.y = 0;
             varJumpTimer.Zero();
         }
 
-        if (controller.collisions.below) {
+        if (controller.collisions.below)
+        {
             coyoteTimer.Start();
         }
 
-        if (jumpGraceTimer && coyoteTimer) {
+        if (jumpGraceTimer && coyoteTimer)
+        {
             jumpGraceTimer.Zero();
             velocity.y = jumpVelocity;
             varJumpTimer.Start();
-            if (Mathf.Abs(movementInput.x) > 0) {
+            if (Mathf.Abs(movementInput.x) > 0)
+            {
                 velocity.x += jumpHBoost * Mathf.Sign(movementInput.x);
             }
         }
 
-        if (controller.collisions.right || controller.collisions.left){
+        if (controller.collisions.right || controller.collisions.left)
+        {
             wallJumpGraceTimer.Start();
             boostDir = controller.collisions.right ? -1 : 1;
         }
 
-        if (_justJumped) {
+        if (_justJumped)
+        {
             _justJumped = false;
             jumpGraceTimer.Start();
         }
 
-        if (jumpGraceTimer && wallJumpGraceTimer) {
+        if (jumpGraceTimer && wallJumpGraceTimer)
+        {
             jumpGraceTimer.Zero();
 
             velocity.y = jumpVelocity;
 
             varJumpTimer.Start();
-            
+
             velocity.x = wallJumpHBoost * boostDir;
             forceInputs.x = boostDir;
             forceInputs.y = 0;
@@ -117,13 +137,16 @@ public class Player : MonoBehaviour
             forceInputsTimer.Start();
         }
 
-        
-        if (varJumpTimer) {
-            if (_jumping) {
+
+        if (varJumpTimer)
+        {
+            if (_jumping)
+            {
                 velocity.y = jumpVelocity;
                 varJumpTimer.Update();
             }
-            else {
+            else
+            {
                 varJumpTimer.Zero();
             }
         }
@@ -131,21 +154,20 @@ public class Player : MonoBehaviour
         RaycastHit2D hit = Physics2D.BoxCast(
             transform.position, collider.bounds.size, 0, Vector2.zero, 0, enemyMask);
 
-        if (hit) {
+        if (hit)
+        {
             Vector2 recoil;
-            if (transform.position.x < hit.transform.position.x) {
+            if (transform.position.x < hit.transform.position.x)
+            {
                 recoil.x = -recoilSpeed;
-            } else {
+            }
+            else
+            {
                 recoil.x = recoilSpeed;
             }
             recoil.y = recoilSpeed;
             // velocity = recoil;
         }
-
-        wallJumpGraceTimer.Update();
-        forceInputsTimer.Update();
-        jumpGraceTimer.Update();
-        coyoteTimer.Update();
 
         velocity.x = movementInput.x * moveSpeed;
         //float accelTime = controller.collisions.below ? accelerationTimeGrounded : accelerationTimeAirborne;
@@ -153,34 +175,72 @@ public class Player : MonoBehaviour
         bool clinging = (controller.collisions.right && movementInput.x == 1) || (controller.collisions.left && movementInput.x == -1);
 
         float maxFall = clinging ? slowMaxFall : defaultMaxFall;
-        float downAccel = movementInput.y == -1 ? extraFallAccelFactor * gravity : gravity;
-        velocity.y = Mathf.Max(velocity.y + downAccel * Time.deltaTime, maxFall);
+        velocity.y = Mathf.Max(velocity.y + gravity * Time.deltaTime, maxFall);
         controller.Move(velocity * Time.deltaTime);
 
+        if (_attackPressed)
+        {
+            _attackPressed = false;
+            if (!attackCooldownTimer)
+            {
+                attackCooldownTimer.time = attackCooldown;
+                attackCooldownTimer.Start();
 
-        if (!controller.collisions.below) {
+                attackTimer.time = attackTime;
+                attackTimer.Start();
+
+                spriteFlash.Flash(0.25f, 0.05f);
+                Vector3 weaponTransformLocalPostion = Vector3.zero;
+                if (Mathf.Abs(controllerInput.y) > float.Epsilon)
+                {
+                    weaponTransformLocalPostion.y = 1.5f * controllerInput.y;
+                }
+                else
+                {
+                    weaponTransformLocalPostion.x = 1.5f;
+                }
+                weaponTransform.localPosition = weaponTransformLocalPostion;
+                weaponTransform.gameObject.SetActive(true);
+            }
+
+        }
+
+        if (!attackTimer)
+        {
+            weaponTransform.gameObject.SetActive(false);
+        }
+
+        if (!controller.collisions.below)
+        {
             if (heldTransform.localScale.x < 0 && movementInput.x > 0 ||
             heldTransform.localScale.x > 0 && movementInput.x < 0)
                 FlipScale();
-            if (velocity.y >= 8) {
+            if (velocity.y >= 8)
+            {
                 _anim.Play("Jump");
             }
-            else if (velocity.y < 8 && velocity.y >= 0){
+            else if (velocity.y < 8 && velocity.y >= 0)
+            {
                 _anim.Play("JumpMid");
             }
-            else if (velocity.y < 0 && _anim.CurrentAnimation.animationName != "JumpMid") {
+            else if (velocity.y < 0 && _anim.CurrentAnimation.animationName != "JumpMid")
+            {
                 _anim.Play("Fall");
             }
         }
-        else {
+        else
+        {
             if (heldTransform.localScale.x < 0 && movementInput.x > 0 ||
-                    heldTransform.localScale.x > 0 && movementInput.x < 0){
+                    heldTransform.localScale.x > 0 && movementInput.x < 0)
+            {
                 FlipScale();
                 _anim.Stop();
                 _anim.Play("Turn");
             }
-            else if (Mathf.Abs(velocity.x) > float.Epsilon){
-                if (_anim.CurrentAnimation.animationName != "Turn"){
+            else if (Mathf.Abs(velocity.x) > float.Epsilon)
+            {
+                if (_anim.CurrentAnimation.animationName != "Turn")
+                {
                     _anim.Play("Run");
                 }
             }
@@ -190,12 +250,20 @@ public class Player : MonoBehaviour
                      _anim.CurrentAnimation.animationName != "Turn")
                 _anim.Play("Idle");
         }
+
+        if (attackCooldownTimer)
+        {
+            if (_anim.CurrentAnimation.animationName != "Slash")
+            {
+                _anim.Play("Slash");
+            }
+        }
     }
 
     private void OnEnable()
     {
         _actions.ToList().ForEach(action => action.Enable());
-        
+
         _actions.Player.Attack.performed += OnAttack;
         _actions.Player.Jump.performed += OnJump;
     }
@@ -231,10 +299,17 @@ public class Player : MonoBehaviour
         }
     }
 
+    [SerializeField]
+    float attackCooldown;
+    Timer attackCooldownTimer = new Timer();
+
+    [SerializeField]
+    float attackTime;
+    Timer attackTimer = new Timer();
+    bool _attackPressed = false;
     private void OnAttack(InputAction.CallbackContext ctx)
     {
-        spriteFlash.Flash(0.25f, 0.25f);
-        Debug.Log("Attack");
+        _attackPressed = true;
     }
 
     private bool _jumping;
@@ -247,7 +322,8 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     Transform heldTransform;
-    private void FlipScale() {
+    private void FlipScale()
+    {
         var heldScale = heldTransform.localScale;
         heldScale.x *= -1;
         heldTransform.localScale = heldScale;

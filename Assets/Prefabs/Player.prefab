@@ -99,12 +99,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1302051b0423f5f448a40824284ba719, type: 2}
   - {fileID: 11400000, guid: fe85eb429cd77e743b912b65262b27b5, type: 2}
   - {fileID: 11400000, guid: dbfcc6cea095ea542a4461e848d612fc, type: 2}
-  - {fileID: 11400000, guid: 502d91c03c8acf9478e10d8b6a483b8c, type: 2}
-  - {fileID: 11400000, guid: fc6a035639ece9045a9a561a3759466e, type: 2}
-  - {fileID: 11400000, guid: e233662da79041c4b868d3bb1b859c9d, type: 2}
-  - {fileID: 11400000, guid: 76fa0b870ddf00d4096ac15119943dd8, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 11400000, guid: 7049e974a92e5634bb71df8297b8ce8d, type: 2}
-  - {fileID: 11400000, guid: a13dadf066c7a744290ed8d3782e4c11, type: 2}
+  - {fileID: 0}
   - {fileID: 11400000, guid: 46ddae9f8d7ea9644b9f5939d4e02310, type: 2}
   - {fileID: 11400000, guid: 557c02cbb408cff49a36f97701b78ef0, type: 2}
 --- !u!1 &3049367128450224285
@@ -224,12 +224,12 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 64
-  defaultMaxFall: -15
-  extraMaxFall: -30
   velocity: {x: 0, y: 0}
   collider: {fileID: 3049367128862125874}
-  input: {x: 0, y: 0}
+  controllerInput: {x: 0, y: 0}
   spriteRenderer: {fileID: 3049367128080458857}
+  attackCooldown: 1
+  heldTransform: {fileID: 0}
 --- !u!1 &3049367128862125873
 GameObject:
   m_ObjectHideFlags: 0
