@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (controller.collisions.right || controller.collisions.left)
+        if ((controller.collisions.right || controller.collisions.left) && !controller.collisions.below)
         {
             wallJumpGraceTimer.Start();
             boostDir = controller.collisions.right ? -1 : 1;
