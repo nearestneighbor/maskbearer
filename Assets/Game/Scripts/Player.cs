@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
     Timer forceInputsTimer = new Timer();
 
     private SpriteAnimator _anim;
-    private PlayerInputActions _actions;
+    public PlayerInputActions _actions;
 
     public Vector2 controllerInput;
 
