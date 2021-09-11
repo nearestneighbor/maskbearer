@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Controller))]
-[RequireComponent(typeof(PlayerInput))]
 public class Player : MonoBehaviour
 {
     const float accelerationTimeAirborne = 0.1f;
@@ -49,13 +48,10 @@ public class Player : MonoBehaviour
     Timer forceInputsTimer = new Timer();
 
     private SpriteAnimator _anim;
+    private PlayerInputActions _actions;
 
     public Vector2 controllerInput;
     
-    Keyboard keyboard;
-    Gamepad gamepad;
-    private bool jumpKeyPressed, jumpKeyDown;
-    private bool attackKeyPressed, attackKeyDown;
     private Vector2 movementInput;
     private float boostDir = 1;
 
@@ -71,34 +67,12 @@ public class Player : MonoBehaviour
         spriteFlash = GetComponent<SpriteFlash>();
         
         controller = GetComponent<Controller>();
-    }
 
-    void Start()
-    {
-        StartInputs();
+        _actions = new PlayerInputActions();
     }
-
-    void StartInputs(){
-        gamepad = InputSystem.GetDevice<Gamepad>();
-        keyboard = InputSystem.GetDevice<Keyboard>();
-    }
-    void UpdateInputs(){
-        jumpKeyPressed = (keyboard?.zKey.wasPressedThisFrame ?? false) || (gamepad?.aButton.wasPressedThisFrame ?? false);
-        jumpKeyDown = (keyboard?.zKey.isPressed ?? false) || (gamepad?.aButton.isPressed ?? false);
-
-        attackKeyPressed = (keyboard?.xKey.wasPressedThisFrame ?? false) || (gamepad?.yButton.wasPressedThisFrame ?? false);
-        attackKeyDown = (keyboard?.xKey.isPressed ?? false) || (gamepad?.yButton.isPressed ?? false);
-        
-        controllerInput = Vector2.zero;
-        if ((keyboard?.leftArrowKey.isPressed ?? false) || (gamepad?.buttonWest.isPressed ?? false) || (gamepad?.leftStick.left.isPressed ?? false)) controllerInput.x--;
-        if ((keyboard?.rightArrowKey.isPressed ?? false) || (gamepad?.buttonEast.isPressed ?? false) || (gamepad?.leftStick.right.isPressed ?? false)) controllerInput.x++;
-        if ((keyboard?.upArrowKey.isPressed ?? false) || (gamepad?.buttonNorth.isPressed ?? false) || (gamepad?.leftStick.up.isPressed ?? false)) controllerInput.y++;
-        if ((keyboard?.downArrowKey.isPressed ?? false) || (gamepad?.buttonSouth.isPressed ?? false) || (gamepad?.leftStick.down.isPressed ?? false)) controllerInput.y--;
-    }
-
+    
     void Update() {
-        UpdateInputs();
-        movementInput = controllerInput;
+        movementInput = _actions.Player.Direction.ReadValue<Vector2>();
         if (forceInputsTimer) movementInput = forceInputs;
 
         if (controller.collisions.below || controller.collisions.above) {
@@ -124,7 +98,8 @@ public class Player : MonoBehaviour
             boostDir = controller.collisions.right ? -1 : 1;
         }
 
-        if (jumpKeyPressed) {
+        if (_justJumped) {
+            _justJumped = false;
             jumpGraceTimer.Start();
         }
 
@@ -144,17 +119,13 @@ public class Player : MonoBehaviour
 
         
         if (varJumpTimer) {
-            if (jumpKeyDown) {
+            if (_jumping) {
                 velocity.y = jumpVelocity;
                 varJumpTimer.Update();
             }
             else {
                 varJumpTimer.Zero();
             }
-        }
-
-        if (attackKeyPressed) {
-            spriteFlash.Flash(0.25f, 0.25f);
         }
 
         RaycastHit2D hit = Physics2D.BoxCast(
@@ -221,13 +192,25 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        _actions.ToList().ForEach(action => action.Enable());
+        
+        _actions.Player.Attack.performed += OnAttack;
+        _actions.Player.Jump.performed += OnJump;
+    }
+
+    private void OnDisable()
+    {
+        _actions.ToList().ForEach(action => action.Disable());
+
+        _actions.Player.Attack.performed -= OnAttack;
+        _actions.Player.Jump.performed -= OnJump;
+    }
+
     private void OnDestroy()
     {
         _anim.AnimationFinished -= OnAnimationFinish;
-    }
-
-    enum Dir {
-        Left, Right,
     }
 
     public SpriteRenderer spriteRenderer;
@@ -246,6 +229,19 @@ public class Player : MonoBehaviour
                 _anim.Play(Mathf.Abs(velocity.x) > 0.1f ? "Run" : "RunStop");
                 break;
         }
+    }
+
+    private void OnAttack(InputAction.CallbackContext ctx)
+    {
+        Debug.Log("Attack");
+    }
+
+    private bool _jumping;
+    private bool _justJumped;
+    private void OnJump(InputAction.CallbackContext ctx)
+    {
+        _jumping = _justJumped = ctx.ReadValueAsButton();
+
     }
 
     [SerializeField]
