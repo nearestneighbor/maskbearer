@@ -30,7 +30,7 @@ public class HealthSegment
     /// The rate at which the segment drains.
     /// </summary>
     [SerializeField]
-    public float DrainRate = 1;
+    public float DrainRate = 0.1f;
     /// <summary>
     /// Whether this health segment is full/not draining.
     /// </summary>
@@ -44,7 +44,7 @@ public class HealthSegment
     /// The rate at which the segment is restored.
     /// </summary>
     [SerializeField]
-    public float RestoreRate = 1;
+    public float RestoreRate = 0.5f;
     /// <summary>
     /// Whether this health segment is empty.
     /// </summary>

@@ -60,11 +60,13 @@ public class PlayerData
     /// Start draining health.
     /// </summary>
     /// <param name="damageAmount">The number of health segments to start draining.</param>
-    public void StartDraining(int damageAmount)
+    public void StartDrainingHealth(int damageAmount)
     {
-        var firstFullSegment = _healthSegments.First(segment => segment.Full);
-        var indexOfFullSegment = _healthSegments.IndexOf(firstFullSegment);
-        _healthSegments.GetRange(indexOfFullSegment, damageAmount).ForEach(segment => segment.StartDraining());
+        if (AllHealthSegmentsDraining) return;
+
+        var lastFullSegment = _healthSegments.Last(segment => segment.Full);
+        var indexOfLastSegment = _healthSegments.IndexOf(lastFullSegment);
+        _healthSegments.GetRange(indexOfLastSegment - damageAmount + 1, damageAmount).ForEach(segment => segment.StartDraining());
     }
 
     /// <summary>
@@ -73,9 +75,11 @@ public class PlayerData
     /// <param name="damageAmount">The number of health segments to instantly drain.</param>
     public void InstantlyDrainHealth(int damageAmount)
     {
-        var firstFullSegment = _healthSegments.First(segment => segment.Full);
-        var indexOfFullSegment = _healthSegments.IndexOf(firstFullSegment);
-        _healthSegments.GetRange(indexOfFullSegment, damageAmount).ForEach(segment => segment.InstantlyDrain());
+        if (AllHealthSegmentsDraining) return;
+
+        var lastFullSegment = _healthSegments.Last(segment => segment.Full);
+        var indexOfLastSegment = _healthSegments.IndexOf(lastFullSegment);
+        _healthSegments.GetRange(indexOfLastSegment - damageAmount + 1, damageAmount).ForEach(segment => segment.InstantlyDrain());
     }
 
     /// <summary>
@@ -84,9 +88,11 @@ public class PlayerData
     /// <param name="restoreAmount">The number of health segments to start restoring.</param>
     public void StartRestoringHealth(int restoreAmount)
     {
-        var firstDrainingSegment = _healthSegments.First(segment => segment.Draining);
-        var indexOfDrainingSegment = _healthSegments.IndexOf(firstDrainingSegment);
-        _healthSegments.GetRange(indexOfDrainingSegment, restoreAmount).ForEach(segment => segment.StartRestoring());
+        if (FullHealth) return;
+
+        var lastDrainingOrEmptySegment = _healthSegments.Last(segment => segment.Draining || segment.Empty);
+        var indexOfDrainingOrEmptySegment = _healthSegments.IndexOf(lastDrainingOrEmptySegment);
+        _healthSegments.GetRange(indexOfDrainingOrEmptySegment, restoreAmount).ForEach(segment => segment.StartRestoring());
     }
 
     /// <summary>
@@ -95,9 +101,11 @@ public class PlayerData
     /// <param name="restoreAmount">The number of health segments to instantly restore.</param>
     public void InstantlyRestoreHealth(int restoreAmount)
     {
-        var firstDrainingSegment = _healthSegments.First(segment => segment.Draining);
-        var indexOfDrainingSegment = _healthSegments.IndexOf(firstDrainingSegment);
-        _healthSegments.GetRange(indexOfDrainingSegment, restoreAmount).ForEach(segment => segment.InstantlyRestore());
+        if (FullHealth) return;
+
+        var lastDrainingOrEmptySegment = _healthSegments.Last(segment => segment.Draining || segment.Empty);
+        var indexOfDrainingOrEmptySegment = _healthSegments.IndexOf(lastDrainingOrEmptySegment);
+        _healthSegments.GetRange(indexOfDrainingOrEmptySegment, restoreAmount).ForEach(segment => segment.InstantlyRestore());
     }
 
     /// <summary>
@@ -126,10 +134,5 @@ public class PlayerData
     public void RemoveHealthSegment(int numSegments)
     {
         _healthSegments.RemoveRange(_healthSegments.Count() - numSegments, numSegments);
-        for (int i = 0; i < numSegments; i++)
-        {
-            
-            
-        }
     }
 }
