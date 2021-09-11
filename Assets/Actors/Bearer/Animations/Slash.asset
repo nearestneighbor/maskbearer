@@ -17,7 +17,7 @@ MonoBehaviour:
   loopStart: 0
   fps: 12
   frames:
-  - {fileID: 21300000, guid: 6e3a86a91f0bb99418ddce7db3c3e8d2, type: 3}
+  - {fileID: 21300000, guid: 596c84850e7da284bb2a85b9fda6dff7, type: 3}
   - {fileID: 21300000, guid: 596c84850e7da284bb2a85b9fda6dff7, type: 3}
   - {fileID: 21300000, guid: eb715f77c6dbd6e469037374f6731e03, type: 3}
   - {fileID: 21300000, guid: 1b8a59f23a5f55a43ad050624dadcf33, type: 3}
