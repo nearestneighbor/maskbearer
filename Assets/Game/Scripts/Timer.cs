@@ -7,6 +7,11 @@ public class Timer
     public float time {set; get;}
     public float timer;
 
+    public float progress {
+        get{
+            return (time - timer)/time;
+        }
+    }
     public Timer(){
         timer = 0;
         time = 0;

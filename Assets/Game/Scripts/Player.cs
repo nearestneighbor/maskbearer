@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
 
         _anim.AnimationFinished += OnAnimationFinish;
 
-        spriteFlash = GetComponent<SpriteFlash>();
+        spriteFlash = GetComponentInChildren<SpriteFlash>();
         
         controller = GetComponent<Controller>();
 
@@ -233,6 +233,7 @@ public class Player : MonoBehaviour
 
     private void OnAttack(InputAction.CallbackContext ctx)
     {
+        spriteFlash.Flash(0.25f, 0.25f);
         Debug.Log("Attack");
     }
 
