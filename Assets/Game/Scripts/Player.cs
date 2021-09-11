@@ -36,7 +36,6 @@ public class Player : MonoBehaviour
     public Vector2 velocity;
 
     Controller controller;
-    private PlayerInput _input;
 
     [SerializeField]
     new BoxCollider2D collider;
@@ -62,7 +61,6 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         _anim ??= heldTransform.Find("Sprite").GetComponent<SpriteAnimator>();
-        _input ??= GetComponent<PlayerInput>();
 
         _anim.AnimationFinished += OnAnimationFinish;
 
@@ -70,7 +68,7 @@ public class Player : MonoBehaviour
 
         controller = GetComponent<Controller>();
 
-        _actions = new PlayerInputActions();
+        SetPlayerInputActions(new PlayerInputActions());
     }
 
     void Update()
@@ -260,20 +258,21 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    public void SetPlayerInputActions(PlayerInputActions actions)
     {
-        _actions.ToList().ForEach(action => action.Enable());
+        if (_actions != null)
+        {
+            _actions.Player.Attack.performed -= OnAttack;
+            _actions.Player.Jump.performed -= OnJump;
+        }
 
-        _actions.Player.Attack.performed += OnAttack;
-        _actions.Player.Jump.performed += OnJump;
-    }
+        _actions = actions;
 
-    private void OnDisable()
-    {
-        _actions.ToList().ForEach(action => action.Disable());
-
-        _actions.Player.Attack.performed -= OnAttack;
-        _actions.Player.Jump.performed -= OnJump;
+        if (_actions != null)
+        {
+            _actions.Player.Attack.performed += OnAttack;
+            _actions.Player.Jump.performed += OnJump;
+        }
     }
 
     private void OnDestroy()

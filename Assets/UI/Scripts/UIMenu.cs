@@ -41,11 +41,8 @@ public class UIMenu : UIManager.UIBehaviour
     private IEnumerator OnPlayClickCoroutine()
     {
         yield return Get<UICurtain>().ShowAndWait();
-        yield return Main.Level.Load(_levelName);
-
-        Get<UICurtain>().Hide();
-        Get<HUD>().Show();
         Hide();
+        Main.Game.StartUp(_levelName);
     }
 
     public void OnQuitClick()
