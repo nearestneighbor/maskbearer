@@ -297,7 +297,7 @@ GameObject:
   m_Component:
   - component: {fileID: 22058100}
   - component: {fileID: 22058101}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -560,6 +560,7 @@ Transform:
   m_LocalPosition: {x: -6.2200003, y: -12.29, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1685818303}
   - {fileID: 1919800513}
   - {fileID: 990623937}
   - {fileID: 459567412}
@@ -1367,7 +1368,7 @@ GameObject:
   m_Component:
   - component: {fileID: 110628178}
   - component: {fileID: 110628179}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1777,7 +1778,7 @@ GameObject:
   m_Component:
   - component: {fileID: 159164739}
   - component: {fileID: 159164740}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1941,7 +1942,7 @@ GameObject:
   m_Component:
   - component: {fileID: 171130661}
   - component: {fileID: 171130662}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2667,7 +2668,7 @@ GameObject:
   m_Component:
   - component: {fileID: 223721350}
   - component: {fileID: 223721351}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2995,7 +2996,7 @@ GameObject:
   m_Component:
   - component: {fileID: 242079762}
   - component: {fileID: 242079761}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: FarDunes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3212,7 +3213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 272115369}
   - component: {fileID: 272115370}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3459,7 +3460,7 @@ GameObject:
   m_Component:
   - component: {fileID: 294426570}
   - component: {fileID: 294426571}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3705,7 +3706,7 @@ GameObject:
   m_Component:
   - component: {fileID: 311571373}
   - component: {fileID: 311571374}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3787,7 +3788,7 @@ GameObject:
   m_Component:
   - component: {fileID: 322842000}
   - component: {fileID: 322842001}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4033,7 +4034,7 @@ GameObject:
   m_Component:
   - component: {fileID: 346966113}
   - component: {fileID: 346966114}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4336,7 +4337,7 @@ GameObject:
   m_Component:
   - component: {fileID: 369632900}
   - component: {fileID: 369632901}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4418,7 +4419,7 @@ GameObject:
   m_Component:
   - component: {fileID: 375231416}
   - component: {fileID: 375231417}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4885,7 +4886,7 @@ GameObject:
   m_Component:
   - component: {fileID: 438838893}
   - component: {fileID: 438838894}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5049,7 +5050,7 @@ GameObject:
   m_Component:
   - component: {fileID: 456579457}
   - component: {fileID: 456579458}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5151,7 +5152,7 @@ Transform:
   - {fileID: 1397093796}
   - {fileID: 1361919762}
   m_Father: {fileID: 38640181}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &466277311
 GameObject:
@@ -5573,7 +5574,7 @@ GameObject:
   m_Component:
   - component: {fileID: 493143832}
   - component: {fileID: 493143833}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6065,7 +6066,7 @@ GameObject:
   m_Component:
   - component: {fileID: 524828943}
   - component: {fileID: 524828944}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6336,7 +6337,6 @@ Transform:
   m_LocalPosition: {x: 13.78, y: -8.91, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1685818303}
   - {fileID: 1586683555}
   - {fileID: 1983232064}
   m_Father: {fileID: 196899155}
@@ -6516,7 +6516,7 @@ GameObject:
   m_Component:
   - component: {fileID: 577982269}
   - component: {fileID: 577982270}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6680,7 +6680,7 @@ GameObject:
   m_Component:
   - component: {fileID: 578347969}
   - component: {fileID: 578347970}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6762,7 +6762,7 @@ GameObject:
   m_Component:
   - component: {fileID: 581356268}
   - component: {fileID: 581356269}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7090,7 +7090,7 @@ GameObject:
   m_Component:
   - component: {fileID: 606177128}
   - component: {fileID: 606177129}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7254,7 +7254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 613699627}
   - component: {fileID: 613699628}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7336,7 +7336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 614025560}
   - component: {fileID: 614025561}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7639,7 +7639,7 @@ GameObject:
   m_Component:
   - component: {fileID: 636523041}
   - component: {fileID: 636523042}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8373,7 +8373,7 @@ GameObject:
   m_Component:
   - component: {fileID: 699258218}
   - component: {fileID: 699258219}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8537,7 +8537,7 @@ GameObject:
   m_Component:
   - component: {fileID: 703290642}
   - component: {fileID: 703290643}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8979,7 +8979,7 @@ GameObject:
   m_Component:
   - component: {fileID: 749216106}
   - component: {fileID: 749216107}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9061,7 +9061,7 @@ GameObject:
   m_Component:
   - component: {fileID: 751054570}
   - component: {fileID: 751054571}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9225,7 +9225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 756166845}
   - component: {fileID: 756166846}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9307,7 +9307,7 @@ GameObject:
   m_Component:
   - component: {fileID: 765979709}
   - component: {fileID: 765979710}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9389,7 +9389,7 @@ GameObject:
   m_Component:
   - component: {fileID: 785788778}
   - component: {fileID: 785788777}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9971,7 +9971,7 @@ GameObject:
   m_Component:
   - component: {fileID: 847115416}
   - component: {fileID: 847115417}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10791,7 +10791,7 @@ GameObject:
   m_Component:
   - component: {fileID: 901960523}
   - component: {fileID: 901960524}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10873,7 +10873,7 @@ GameObject:
   m_Component:
   - component: {fileID: 905399331}
   - component: {fileID: 905399332}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11201,7 +11201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 914967538}
   - component: {fileID: 914967539}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11283,7 +11283,7 @@ GameObject:
   m_Component:
   - component: {fileID: 922901151}
   - component: {fileID: 922901152}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11365,7 +11365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 928110053}
   - component: {fileID: 928110054}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11619,7 +11619,7 @@ GameObject:
   m_Component:
   - component: {fileID: 968656457}
   - component: {fileID: 968656458}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11701,7 +11701,7 @@ GameObject:
   m_Component:
   - component: {fileID: 979256646}
   - component: {fileID: 979256647}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: NearDunes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11770,7 +11770,7 @@ GameObject:
   m_Component:
   - component: {fileID: 981646427}
   - component: {fileID: 981646428}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12118,7 +12118,7 @@ Transform:
   - {fileID: 40278609}
   - {fileID: 1412777903}
   m_Father: {fileID: 38640181}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &995233597
 GameObject:
@@ -12622,7 +12622,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1051811403}
   - component: {fileID: 1051811402}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: FarFarDunes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12783,7 +12783,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1062139783}
   - component: {fileID: 1062139784}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13692,7 +13692,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1098187943}
   - component: {fileID: 1098187944}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14315,6 +14315,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6692712310328979121, guid: b290e5f540e1d894e8ca28975f3abbdf, type: 3}
+      propertyPath: m_SortingOrder
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 8822198472242826851, guid: b290e5f540e1d894e8ca28975f3abbdf, type: 3}
       propertyPath: m_Name
       value: SlashDummy
@@ -14336,7 +14340,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1159555329}
   - component: {fileID: 1159555330}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14500,7 +14504,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1170358554}
   - component: {fileID: 1170358555}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14697,7 +14701,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1195884905}
   - component: {fileID: 1195884906}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15107,7 +15111,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1202838322}
   - component: {fileID: 1202838323}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15271,7 +15275,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1211340817}
   - component: {fileID: 1211340818}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15353,7 +15357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1212938109}
   - component: {fileID: 1212938110}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16148,7 +16152,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1278851464}
   - component: {fileID: 1278851465}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16230,7 +16234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1288951527}
   - component: {fileID: 1288951528}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16394,7 +16398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1304841205}
   - component: {fileID: 1304841206}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16640,7 +16644,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1333031527}
   - component: {fileID: 1333031528}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16804,7 +16808,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1334364044}
   - component: {fileID: 1334364043}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: FarFarFarDunes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16945,7 +16949,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1346305949}
   - component: {fileID: 1346305950}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17448,7 +17452,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1397748525}
   - component: {fileID: 1397748526}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17530,7 +17534,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1401419397}
   - component: {fileID: 1401419398}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17694,7 +17698,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1403877165}
   - component: {fileID: 1403877166}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17776,7 +17780,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1410457411}
   - component: {fileID: 1410457412}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17976,7 +17980,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1420404269}
   - component: {fileID: 1420404270}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18522,6 +18526,150 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1478992402
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1478992404}
+  - component: {fileID: 1478992403}
+  - component: {fileID: 1478992407}
+  - component: {fileID: 1478992406}
+  - component: {fileID: 1478992405}
+  m_Layer: 0
+  m_Name: fern
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1478992403
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478992402}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 5f11474614fcb524b8bebb01c9754201, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.04, y: 2.06}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1478992404
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478992402}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2, y: -2.19, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1478992405
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478992402}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.04, y: 2.06}
+    newSize: {x: 1.04, y: 2.06}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.04, y: 2.06}
+  m_EdgeRadius: 0
+--- !u!50 &1478992406
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478992402}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &1478992407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478992402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c09b02c7d84feb44ae5142f312e0a5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1487482486
 GameObject:
   m_ObjectHideFlags: 0
@@ -19011,6 +19159,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 6692712310328979121, guid: b290e5f540e1d894e8ca28975f3abbdf, type: 3}
+      propertyPath: m_SortingOrder
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 8822198472242826851, guid: b290e5f540e1d894e8ca28975f3abbdf, type: 3}
       propertyPath: m_Name
       value: SlashDummy (1)
@@ -19119,7 +19271,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1554141075}
   - component: {fileID: 1554141076}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19454,7 +19606,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1575964917}
   - component: {fileID: 1575964918}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19536,7 +19688,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1576943488}
   - component: {fileID: 1576943489}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19618,7 +19770,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1583016162}
   - component: {fileID: 1583016163}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19700,7 +19852,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1586190819}
   - component: {fileID: 1586190820}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19805,7 +19957,7 @@ Transform:
   - {fileID: 97201851}
   - {fileID: 686346414}
   m_Father: {fileID: 560550364}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1595211614
 GameObject:
@@ -20246,8 +20398,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1685818303}
-  - component: {fileID: 1685818306}
-  - component: {fileID: 1685818305}
   - component: {fileID: 1685818304}
   m_Layer: 0
   m_Name: Quad
@@ -20263,47 +20413,33 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1685818302}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.832, y: -7.5936, z: 0}
-  m_LocalScale: {x: 83.79943, y: 8.589788, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 19.168, y: -4.213599, z: 0}
+  m_LocalScale: {x: 83.79943, y: 8.589788, z: 0}
   m_Children: []
-  m_Father: {fileID: 560550364}
+  m_Father: {fileID: 38640181}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &1685818304
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1685818302}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1685818305
-MeshRenderer:
+--- !u!212 &1685818304
+SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1685818302}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
+  m_RayTracingMode: 0
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ef6d67fd7b97f1d40a303fd4bf638f14, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20316,23 +20452,25 @@ MeshRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
+  m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1685818306
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1685818302}
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  m_SortingOrder: 100
+  m_Sprite: {fileID: 21300000, guid: cf08839b1354044408cc07e76a2d5e3a, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1709012539
 GameObject:
   m_ObjectHideFlags: 0
@@ -20343,7 +20481,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1709012540}
   - component: {fileID: 1709012541}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20917,7 +21055,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1760022194}
   - component: {fileID: 1760022195}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21081,7 +21219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1768533473}
   - component: {fileID: 1768533474}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22100,7 +22238,7 @@ Transform:
   - {fileID: 1772423881}
   - {fileID: 1801785468}
   m_Father: {fileID: 38640181}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1921044526
 GameObject:
@@ -22157,7 +22295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1921129290}
   - component: {fileID: 1921129291}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22694,7 +22832,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1977614508}
   - component: {fileID: 1977614509}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22799,7 +22937,7 @@ Transform:
   - {fileID: 825040856}
   - {fileID: 1853161917}
   m_Father: {fileID: 560550364}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1987485679
 GameObject:
@@ -22811,7 +22949,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1987485680}
   - component: {fileID: 1987485681}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23386,7 +23524,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2056651863}
   - component: {fileID: 2056651864}
-  m_Layer: 28
+  m_Layer: 0
   m_Name: dune2 (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23501,7 +23639,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2061463139}
   - component: {fileID: 2061463140}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24026,7 +24164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2113514276}
   - component: {fileID: 2113514277}
-  m_Layer: 27
+  m_Layer: 0
   m_Name: dune2 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24570,6 +24708,18 @@ PrefabInstance:
     - target: {fileID: 3049367128450224285, guid: 67722c462f458ee4590a5a53ae8a1643, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4169506398698223111, guid: 67722c462f458ee4590a5a53ae8a1643, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7816069567403119005, guid: 67722c462f458ee4590a5a53ae8a1643, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7816069567403119005, guid: 67722c462f458ee4590a5a53ae8a1643, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67722c462f458ee4590a5a53ae8a1643, type: 3}

@@ -45,7 +45,7 @@ public class SegmentGenerator : MonoBehaviour
             segment.offset = i * segmentOffset;
             segment.transform.Find("Sprite").GetComponent<SpriteAnimator>().Play((i % 2 == 0) ? "CrawlA" : "CrawlB");
             var deathManager = segment.GetComponentInChildren<DeathManager>(true);
-            deathManager.Death += CheckSegments;
+            // deathManager.Death += CheckSegments;
             startSegments.Add(segment);
         }
 

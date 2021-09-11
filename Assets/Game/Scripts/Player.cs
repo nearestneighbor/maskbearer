@@ -208,7 +208,7 @@ public class Player : MonoBehaviour
                 _anim.Stop();
                 _anim.Play("Turn");
             }
-            else if (Mathf.Abs(velocity.x) > 0.1f){
+            else if (Mathf.Abs(velocity.x) > float.Epsilon){
                 if (_anim.CurrentAnimation.animationName != "Turn"){
                     _anim.Play("Run");
                 }
