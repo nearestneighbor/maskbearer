@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -22,7 +21,7 @@ public class PlayerData
     }
 
     /// <summary>
-    /// Contains all the health segments that the player current has.
+    /// Contains all the health segments that the player currently has.
     /// </summary>
     [SerializeField]
     private List<HealthSegment> _healthSegments = new List<HealthSegment>();
@@ -134,5 +133,23 @@ public class PlayerData
     public void RemoveHealthSegment(int numSegments)
     {
         _healthSegments.RemoveRange(_healthSegments.Count() - numSegments, numSegments);
+    }
+
+    /// <summary>
+    /// Increase the size of all health segments by an amount.
+    /// </summary>
+    /// <param name="growAmount">The amount to increase the size of all health segments by.</param>
+    public void GrowHealthSegments(float growAmount)
+    {
+        _healthSegments.ForEach(segment => segment.GrowSegment(growAmount));
+    }
+
+    /// <summary>
+    /// Decrease the size of all health segments by an amount.
+    /// </summary>
+    /// <param name="shrinkAmount">The amount to decrease the size of all health segments by.</param>
+    public void ShrinkHealthSegments(float shrinkAmount)
+    {
+        _healthSegments.ForEach(segment => segment.ShrinkSegment(shrinkAmount));
     }
 }

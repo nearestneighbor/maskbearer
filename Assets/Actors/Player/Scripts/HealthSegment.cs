@@ -95,4 +95,23 @@ public class HealthSegment
         _restoring = false;
         _currentSegmentSize = maxSegmentSize;
     }
+
+    /// <summary>
+    /// Increase the size of this health segment.
+    /// </summary>
+    /// <param name="growAmount">The amount to increase the health segment size by.</param>
+    public void GrowSegment(float growAmount)
+    {
+        InstantlyRestore();
+        _currentSegmentSize += growAmount;
+    }
+
+    /// <summary>
+    /// Decrease the size of this health segment.
+    /// </summary>
+    /// <param name="shrinkAmount">The amount to decrease the health segment size by.</param>
+    public void ShrinkSegment(float shrinkAmount)
+    {
+        _currentSegmentSize -= shrinkAmount;
+    }
 }
