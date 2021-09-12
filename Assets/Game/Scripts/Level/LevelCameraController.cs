@@ -19,7 +19,7 @@ public class LevelCameraController : MonoBehaviour
         );
     }
 
-    private void Setup(Camera camera, Player player, LevelBounds bounds)
+    public void Setup(Camera camera, Player player, LevelBounds bounds)
     {
         _camera = camera;
         _player = player;

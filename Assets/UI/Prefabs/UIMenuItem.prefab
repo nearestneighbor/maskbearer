@@ -443,8 +443,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Label
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e684b23a7241f45d8a63705806d27c52, type: 2}
-  m_sharedMaterial: {fileID: 9068789884708468962, guid: e684b23a7241f45d8a63705806d27c52, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: cece0aaff2f454ba7982b8e141e2e4f5, type: 2}
+  m_sharedMaterial: {fileID: 5917789937867559150, guid: cece0aaff2f454ba7982b8e141e2e4f5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
