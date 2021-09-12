@@ -18,6 +18,8 @@ public class Main : MonoBehaviour
 
     private void Start()
     {
+        // Temporary project
+
         UnloadAllScenesButThis();
         
         UI.Get<UIMenu>().Show();
