@@ -19,7 +19,8 @@ public class Main : MonoBehaviour
     private void Start()
     {
         UnloadAllScenesButThis();
-        
+
+        UI.Get<HUD>().Show();
         UI.Get<UIMenu>().Show();
     }
 

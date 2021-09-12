@@ -8,12 +8,12 @@ public class HealthSegment
     /// The maxmimum size of the segment.
     /// </summary>
     [SerializeField]
-    public float maxSegmentSize = 100;
+    public float maxSegmentSize = 200;
     /// <summary>
     /// The current size of the segment.
     /// </summary>
     [SerializeField]
-    private float _currentSegmentSize = 100;
+    private float _currentSegmentSize = 200;
     public float CurrentSegmentSize => _currentSegmentSize;
     /// <summary>
     /// The index of this health segment in the player's total health.
@@ -102,8 +102,8 @@ public class HealthSegment
     /// <param name="growAmount">The amount to increase the health segment size by.</param>
     public void GrowSegment(float growAmount)
     {
+        maxSegmentSize += growAmount;
         InstantlyRestore();
-        _currentSegmentSize += growAmount;
     }
 
     /// <summary>
@@ -112,6 +112,6 @@ public class HealthSegment
     /// <param name="shrinkAmount">The amount to decrease the health segment size by.</param>
     public void ShrinkSegment(float shrinkAmount)
     {
-        _currentSegmentSize -= shrinkAmount;
+        maxSegmentSize -= shrinkAmount;
     }
 }

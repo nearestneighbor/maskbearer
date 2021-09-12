@@ -47,9 +47,14 @@ public class PlayerData
     /// </summary>
     public bool FullHealth => DrainingHealthSegments <= 0;
     public bool NoHealth => _healthSegments.Count(segment => segment.Empty) >= NumMaxHealthSegments;
+    /// <summary>
+    /// The current size of each segment.
+    /// </summary>
+    public float MaxHealthSegmentSize => _healthSegments.First().maxSegmentSize;
 
     public static PlayerData CreateNewPlayerData()
     {
+        Debug.Log("Creating new PlayerData instance.");
         _instance = new PlayerData();
         for (int i = 0; i < 5; i++)
             _instance._healthSegments.Add(new HealthSegment());
@@ -173,7 +178,7 @@ public class PlayerData
     /// <param name="numSegments">The number of segments to remove.</param>
     public void RemoveHealthSegment(int numSegments)
     {
-        _healthSegments.RemoveRange(_healthSegments.Count() - numSegments, numSegments);
+        _healthSegments.RemoveRange(_healthSegments.Count() - numSegments - 1, numSegments);
     }
 
     /// <summary>

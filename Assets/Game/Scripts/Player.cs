@@ -303,6 +303,9 @@ public class Player : MonoBehaviour
     bool _attackPressed = false;
     private void OnAttack(InputAction.CallbackContext ctx)
     {
+        PlayerData.Instance.AddHealthSegment(1);
+        PlayerData.Instance.ShrinkHealthSegments(25);
+        FindObjectOfType<HUD>(true).ModifyHUD();
         _attackPressed = true;
     }
 
