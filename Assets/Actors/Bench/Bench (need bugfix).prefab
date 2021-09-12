@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 8556991197852481421}
   - component: {fileID: 922323442002821298}
   m_Layer: 0
-  m_Name: Bench
+  m_Name: Bench (need bugfix)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

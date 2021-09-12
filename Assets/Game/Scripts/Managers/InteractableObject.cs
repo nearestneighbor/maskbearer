@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 //i think it would be useful for dialogs, signs, beches etc
+//dont work on this moment
 abstract public class InteractableObject : MonoBehaviour
 {
     Animator anim;
@@ -16,7 +17,7 @@ abstract public class InteractableObject : MonoBehaviour
         inputs = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>()._actions;
         inputs.Player.Direction.started += bruh => TryInteract(bruh.ReadValue<Vector2>());
         Transform.FindObjectOfType<Text>().GetComponent<Text>().text = Name_t;
-        anim = Transform.FindObjectOfType<Text>().GetComponent<Animator>();
+        anim = Transform.FindObjectOfType<Canvas>().GetComponent<Animator>();
         anim.SetBool("isActive", false);
     }
     void OnTriggerEnter2D(Collider2D collision)
