@@ -30,10 +30,18 @@ public class LevelBounds : MonoBehaviour
         // _top.hideFlags = _right.hideFlags = _bottom.hideFlags = _left.hideFlags = HideFlags.None;
     }
 
+    private void Update()
+    {
+        if (!Application.isPlaying)
+        {
+            transform.localPosition = Vector3.zero;
+            transform.localScale = Vector3.one;
+            transform.localRotation = Quaternion.identity;
+        }
+    }
+
     private void OnValidate()
     {
-        transform.localScale = Vector3.one;
-        transform.localRotation = Quaternion.identity;
 
         _size.x = Mathf.Max(1, _size.x);
         _size.y = Mathf.Max(1, _size.y);
