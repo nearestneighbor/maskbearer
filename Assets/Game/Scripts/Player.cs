@@ -258,6 +258,7 @@ public class Player : MonoBehaviour
         if (_actions != null)
         {
             _actions.Player.Attack.performed -= OnAttack;
+            _actions.Player.Focus.performed -= OnFocus;
             _actions.Player.Jump.performed -= OnJump;
         }
 
@@ -266,6 +267,7 @@ public class Player : MonoBehaviour
         if (_actions != null)
         {
             _actions.Player.Attack.performed += OnAttack;
+            _actions.Player.Focus.performed += OnFocus;
             _actions.Player.Jump.performed += OnJump;
         }
     }
@@ -304,6 +306,16 @@ public class Player : MonoBehaviour
     private void OnAttack(InputAction.CallbackContext ctx)
     {
         _attackPressed = true;
+    }
+
+    public bool Focusing { get; private set; }
+    private void OnFocus(InputAction.CallbackContext ctx)
+    {
+        Focusing = ctx.ReadValueAsButton();
+        if (Focusing)
+            PlayerData.Instance.StartRestoringHealth(1);
+        else
+            PlayerData.Instance.StopRestoringHealth();
     }
 
     private bool _jumping;

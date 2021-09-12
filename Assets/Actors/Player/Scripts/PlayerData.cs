@@ -35,24 +35,40 @@ public class PlayerData
     /// </summary>
     public int DrainingHealthSegments => _healthSegments.Count(segment => segment.Draining);
     /// <summary>
-    /// The number of segments that are full/not draining.
+    /// The number of health segments that are empty.
     /// </summary>
-    public int FullHealthSegments => NumMaxHealthSegments - DrainingHealthSegments;
+    public int EmptyHealthSegments => _healthSegments.Count(segment => segment.Empty);
+    /// <summary>
+    /// The number of segments that are full.
+    /// </summary>
+    public int FullHealthSegments => _healthSegments.Count(segment => segment.Full);
     /// <summary>
     /// Whether all health segments are draining.
     /// </summary>
-    public bool AllHealthSegmentsDraining => DrainingHealthSegments == NumMaxHealthSegments;
+    public bool AllHealthSegmentsDraining => DrainingHealthSegments >= NumMaxHealthSegments;
     /// <summary>
     /// Whether the player is at full health with no segments draining.
     /// </summary>
-    public bool FullHealth => DrainingHealthSegments <= 0;
-    public bool NoHealth => _healthSegments.Count(segment => segment.Empty) >= NumMaxHealthSegments;
+    public bool FullHealth => FullHealthSegments >= NumMaxHealthSegments;
+    /// <summary>
+    /// Whether the player has no health remaining.
+    /// </summary>
+    public bool NoHealth => EmptyHealthSegments >= NumMaxHealthSegments;
+    /// <summary>
+    /// The current size of each segment.
+    /// </summary>
+    public float MaxHealthSegmentSize => _healthSegments.FirstOrDefault().maxSegmentSize;
 
     public static PlayerData CreateNewPlayerData()
     {
+        Debug.Log("Creating new PlayerData instance.");
         _instance = new PlayerData();
         for (int i = 0; i < 5; i++)
-            _instance._healthSegments.Add(new HealthSegment());
+        {
+            var newSegment = new HealthSegment();
+            newSegment.Filled += _instance.OnHealthSegmentFill;
+            _instance._healthSegments.Add(newSegment);
+        }
         return _instance;
     }
 
@@ -77,7 +93,7 @@ public class PlayerData
     {
         if (AllHealthSegmentsDraining) return;
 
-        var lastFullSegment = _healthSegments.Last(segment => segment.Full);
+        var lastFullSegment = _healthSegments.Last(segment => segment.Full || segment.Draining);
         var indexOfLastSegment = _healthSegments.IndexOf(lastFullSegment);
         _healthSegments.GetRange(indexOfLastSegment - damageAmount + 1, damageAmount).ForEach(segment => segment.InstantlyDrain());
     }
@@ -110,8 +126,8 @@ public class PlayerData
     {
         if (FullHealth) return;
 
-        var lastDrainingOrEmptySegment = _healthSegments.Last(segment => segment.Draining || segment.Empty);
-        var indexOfDrainingOrEmptySegment = _healthSegments.IndexOf(lastDrainingOrEmptySegment);
+        var firstDrainingOrEmptySegment = _healthSegments.FirstOrDefault(segment => segment.Draining || segment.Empty);
+        var indexOfDrainingOrEmptySegment = _healthSegments.IndexOf(firstDrainingOrEmptySegment);
         _healthSegments.GetRange(indexOfDrainingOrEmptySegment, restoreAmount).ForEach(segment => segment.StartRestoring());
     }
 
@@ -123,6 +139,16 @@ public class PlayerData
         if (FullHealth) return;
 
         _healthSegments.ForEach(segment => { if (segment.Draining || segment.Empty) segment.StartRestoring(); });
+    }
+
+    /// <summary>
+    /// Stop restoring health.
+    /// </summary>
+    public void StopRestoringHealth()
+    {
+        var restoringSegment = _healthSegments.FirstOrDefault(segment => segment.Restoring);
+        if (restoringSegment != null)
+            restoringSegment.StartDraining();
     }
 
     /// <summary>
@@ -163,8 +189,22 @@ public class PlayerData
             newSegment.DrainRate = referenceSegment.DrainRate;
             newSegment.RestoreRate = referenceSegment.RestoreRate;
             newSegment.segmentIndex = _healthSegments.Count();
+            newSegment.Filled += OnHealthSegmentFill;
             _healthSegments.Add(newSegment);
         }
+    }
+
+    /// <summary>
+    /// Handles when a health segment is filled while the player is still focusing.
+    /// </summary>
+    /// <param name="healthSegment">The health segment that has just been filled.</param>
+    private void OnHealthSegmentFill(HealthSegment healthSegment)
+    {
+        var segmentIndex = _healthSegments.IndexOf(healthSegment);
+        if (segmentIndex >= _healthSegments.Count - 1) return;
+        var nextSegment = _healthSegments[segmentIndex + 1];
+        nextSegment.StopDrainingAndRestoring();
+        nextSegment.StartRestoring();
     }
 
     /// <summary>
@@ -173,7 +213,12 @@ public class PlayerData
     /// <param name="numSegments">The number of segments to remove.</param>
     public void RemoveHealthSegment(int numSegments)
     {
-        _healthSegments.RemoveRange(_healthSegments.Count() - numSegments, numSegments);
+        for (int i = _healthSegments.Count - numSegments - 1; i <= _healthSegments.Count; i++)
+        {
+            var segmentToRemove = _healthSegments[i];
+            segmentToRemove.Filled -= OnHealthSegmentFill;
+            _healthSegments.Remove(segmentToRemove);
+        }
     }
 
     /// <summary>
