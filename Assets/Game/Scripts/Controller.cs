@@ -86,7 +86,6 @@ public class Controller : MonoBehaviour
         if (delta.y != 0){
             VerticalCollisions(ref delta);
         }
-
         transform.Translate(delta);
         Physics2D.SyncTransforms();
     }
