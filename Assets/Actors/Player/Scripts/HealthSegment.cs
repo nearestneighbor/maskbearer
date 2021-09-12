@@ -4,6 +4,14 @@ using UnityEngine;
 [Serializable]
 public class HealthSegment
 {
+    public delegate void SegmentDepleted(HealthSegment healthSegment);
+    public event SegmentDepleted Depleted;
+    protected virtual void OnDeplete() => Depleted?.Invoke(this);
+
+    public delegate void SegmentFilled(HealthSegment healthSegment);
+    public event SegmentFilled Filled;
+    protected virtual void OnFill() => Filled?.Invoke(this);
+
     /// <summary>
     /// The maxmimum size of the segment.
     /// </summary>
@@ -30,9 +38,9 @@ public class HealthSegment
     /// The rate at which the segment drains.
     /// </summary>
     [SerializeField]
-    public float DrainRate = 0.1f;
+    public float DrainRate = 10;
     /// <summary>
-    /// Whether this health segment is full/not draining.
+    /// Whether this health segment is full.
     /// </summary>
     public bool Full => _currentSegmentSize >= maxSegmentSize;
     /// <summary>
@@ -44,7 +52,7 @@ public class HealthSegment
     /// The rate at which the segment is restored.
     /// </summary>
     [SerializeField]
-    public float RestoreRate = 0.5f;
+    public float RestoreRate = 25;
     /// <summary>
     /// Whether this health segment is empty.
     /// </summary>
@@ -52,10 +60,26 @@ public class HealthSegment
 
     public void UpdateSegment(float deltaTime)
     {
-        if (_draining && !Empty)
-            _currentSegmentSize -= DrainRate;
-        else if (_restoring && !Full)
-            _currentSegmentSize += RestoreRate;
+        if (_draining)
+        {
+            _currentSegmentSize -= DrainRate * deltaTime;
+            if (Empty)
+            {
+                OnDeplete();
+                _currentSegmentSize = 0;
+                _draining = false;
+            }
+        }
+        else if (_restoring)
+        {
+            _currentSegmentSize += RestoreRate * deltaTime;
+            if (Full)
+            {
+                OnFill();
+                _currentSegmentSize = maxSegmentSize;
+                _restoring = false;
+            }
+        }
     }
 
     /// <summary>
@@ -72,8 +96,7 @@ public class HealthSegment
     /// </summary>
     public void InstantlyDrain()
     {
-        _draining = false;
-        _restoring = false;
+        _draining = _restoring = false;
         _currentSegmentSize = 0;
     }
 
@@ -91,9 +114,16 @@ public class HealthSegment
     /// </summary>
     public void InstantlyRestore()
     {
-        _draining = false;
-        _restoring = false;
+        _draining = _restoring = false;
         _currentSegmentSize = maxSegmentSize;
+    }
+
+    /// <summary>
+    /// Stop draining and restoring this health segment.
+    /// </summary>
+    public void StopDrainingAndRestoring()
+    {
+        _draining = _restoring = false;
     }
 
     /// <summary>
