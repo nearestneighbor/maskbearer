@@ -277,7 +277,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""Cancel"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""ad0fcef0-fb7a-42bd-a8db-5821fed1cf8f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",

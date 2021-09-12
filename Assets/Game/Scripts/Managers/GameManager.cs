@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         _input = new PlayerInputActions();
+        _input.UI.Cancel.performed += OnUICancel;
+        _input.UI.Enable();
     }
 
     //
@@ -33,6 +36,11 @@ public class GameManager : MonoBehaviour
             transitionName = message.TransitionName,
             transitionDirection = message.TransitionDirection
         });
+    }
+
+    private void OnUICancel(InputAction.CallbackContext context)
+    {
+        Close();
     }
 
     //
@@ -80,5 +88,14 @@ public class GameManager : MonoBehaviour
 
         public string transitionName;
         public LevelTransitionMessage.Direction transitionDirection; 
+    }
+
+    private void Close() => StartCoroutine(CloseCoroutine());
+    private IEnumerator CloseCoroutine()
+    {
+        yield return Main.UI.Get<UICurtain>().ShowAndWait();
+        yield return Main.Level.Unload();
+        Main.UI.Get<UIMenu>().Show();
+        yield return Main.UI.Get<UICurtain>().HideAndWait();
     }
 }
