@@ -6,7 +6,7 @@ public class ParticleSystemScaler : MonoBehaviour
     void Update()
     {
         var system = GetComponent<ParticleSystem>();
-        if (system != null)
+        if (system != null && Camera.main != null)
         {
             // Position
             system.transform.position = Camera.main.transform.position;
