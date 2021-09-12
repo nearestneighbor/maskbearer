@@ -46,12 +46,14 @@ public class Player : MonoBehaviour
     Timer forceInputsTimer = new Timer();
 
     private SpriteAnimator _anim;
-    private PlayerInputActions _actions;
+    public PlayerInputActions _actions;
 
     public Vector2 controllerInput;
 
     private Vector2 movementInput;
     private float boostDir = 1;
+
+    Animator animator;
 
     SpriteFlash spriteFlash;
 
@@ -60,7 +62,11 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
         _anim ??= heldTransform.Find("Sprite").GetComponent<SpriteAnimator>();
+
+        animator = GetComponent<Animator>();
 
         _anim.AnimationFinished += OnAnimationFinish;
 
@@ -207,24 +213,13 @@ public class Player : MonoBehaviour
         {
             weaponTransform.gameObject.SetActive(false);
         }
-
+        //This function should be here
+        ProcessAnimations();
         if (!controller.collisions.below)
         {
             if (heldTransform.localScale.x < 0 && movementInput.x > 0 ||
             heldTransform.localScale.x > 0 && movementInput.x < 0)
                 FlipScale();
-            if (velocity.y >= 8)
-            {
-                _anim.Play("Jump");
-            }
-            else if (velocity.y < 8 && velocity.y >= 0)
-            {
-                _anim.Play("JumpMid");
-            }
-            else if (velocity.y < 0 && _anim.CurrentAnimation.animationName != "JumpMid")
-            {
-                _anim.Play("Fall");
-            }
         }
         else
         {
@@ -326,6 +321,15 @@ public class Player : MonoBehaviour
         var heldScale = heldTransform.localScale;
         heldScale.x *= -1;
         heldTransform.localScale = heldScale;
-
+        spriteRenderer.flipX=!spriteRenderer.flipX;
+        if(controller.collisions.below)
+        animator.SetTrigger("Turn");
+    }
+    void ProcessAnimations()
+    {
+        Debug.Log(velocity);
+        animator.SetFloat("vertSpeed", velocity.y);
+        animator.SetBool("isRunning", velocity.x!=0.0f);
+        animator.SetBool("isGrounded", controller.collisions.below);
     }
 }
