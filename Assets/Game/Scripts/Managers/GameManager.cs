@@ -79,6 +79,8 @@ public class GameManager : MonoBehaviour
             _input
         );
 
+        UI.Get<HUD>().Show();
+
         yield return Main.UI.Get<UICurtain>().HideAndWait();
     }
 

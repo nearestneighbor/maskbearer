@@ -20,7 +20,6 @@ public class Main : MonoBehaviour
     {
         UnloadAllScenesButThis();
 
-        UI.Get<HUD>().Show();
         UI.Get<UIMenu>().Show();
     }
 
