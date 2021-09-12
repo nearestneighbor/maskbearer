@@ -45,7 +45,8 @@ public class PlayerData
     /// <summary>
     /// Whether the player is at full health with no segments draining.
     /// </summary>
-    public bool FullHealth { get => DrainingHealthSegments <= 0; }
+    public bool FullHealth => DrainingHealthSegments <= 0;
+    public bool NoHealth => _healthSegments.Count(segment => segment.Empty) >= NumMaxHealthSegments;
 
     public static PlayerData CreateNewPlayerData()
     {
@@ -82,6 +83,26 @@ public class PlayerData
     }
 
     /// <summary>
+    /// Start draining all health segments.
+    /// </summary>
+    public void StartDrainingAllHealth()
+    {
+        if (AllHealthSegmentsDraining) return;
+
+        _healthSegments.ForEach(segment => { if (segment.Full) segment.StartDraining(); });
+    }
+
+    /// <summary>
+    /// Instantly drain all health segments.
+    /// </summary>
+    public void InstantlyDrainAllHealth()
+    {
+        if (NoHealth) return;
+
+        _healthSegments.ForEach(segment => { if (segment.Full) segment.InstantlyDrain(); });
+    }
+
+    /// <summary>
     /// Start restoring health.
     /// </summary>
     /// <param name="restoreAmount">The number of health segments to start restoring.</param>
@@ -92,6 +113,26 @@ public class PlayerData
         var lastDrainingOrEmptySegment = _healthSegments.Last(segment => segment.Draining || segment.Empty);
         var indexOfDrainingOrEmptySegment = _healthSegments.IndexOf(lastDrainingOrEmptySegment);
         _healthSegments.GetRange(indexOfDrainingOrEmptySegment, restoreAmount).ForEach(segment => segment.StartRestoring());
+    }
+
+    /// <summary>
+    /// Start restoring health to maximum.
+    /// </summary>
+    public void StartRestoringAllHealth()
+    {
+        if (FullHealth) return;
+
+        _healthSegments.ForEach(segment => { if (segment.Draining || segment.Empty) segment.StartRestoring(); });
+    }
+
+    /// <summary>
+    /// Instantly restore health to maximum.
+    /// </summary>
+    public void InstantlyRestoreAllHealth()
+    {
+        if (FullHealth) return;
+
+        _healthSegments.ForEach(segment => { if (segment.Draining || segment.Empty) segment.InstantlyRestore(); });
     }
 
     /// <summary>
