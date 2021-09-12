@@ -2,7 +2,8 @@
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.SceneManagement;
- 
+using System.Collections.Generic;
+
 /// <summary>
 /// Scene auto loader.
 /// </summary>
@@ -39,39 +40,32 @@ static class SceneAutoLoader
 	}
  
 	[MenuItem("File/Scene Autoload/Load Master On Play", true)]
-	private static bool ShowLoadMasterOnPlay()
-	{
-		return !LoadMasterOnPlay;
-	}
+	private static bool ShowLoadMasterOnPlay() => !LoadMasterOnPlay;
 	[MenuItem("File/Scene Autoload/Load Master On Play")]
-	private static void EnableLoadMasterOnPlay()
-	{
-		LoadMasterOnPlay = true;
-	}
- 
+	private static void EnableLoadMasterOnPlay() => LoadMasterOnPlay = true;
 	[MenuItem("File/Scene Autoload/Don't Load Master On Play", true)]
-	private static bool ShowDontLoadMasterOnPlay()
-	{
-		return LoadMasterOnPlay;
-	}
+	private static bool ShowDontLoadMasterOnPlay() => LoadMasterOnPlay;
 	[MenuItem("File/Scene Autoload/Don't Load Master On Play")]
-	private static void DisableLoadMasterOnPlay()
-	{
-		LoadMasterOnPlay = false;
-	}
+	private static void DisableLoadMasterOnPlay() => LoadMasterOnPlay = false;
  
 	// Play mode change callback handles the scene load/reload.
 	private static void OnPlayModeChanged(PlayModeStateChange state)
 	{
 		if (!LoadMasterOnPlay)
-		{
 			return;
-		}
+
+		if (EditorApplication.isPlaying)
+			return;
  
-		if (!EditorApplication.isPlaying && EditorApplication.isPlayingOrWillChangePlaymode)
+		if (EditorApplication.isPlayingOrWillChangePlaymode)
 		{
 			// User pressed play -- autoload master scene.
-			PreviousScene = EditorSceneManager.GetActiveScene().path;
+			var scenePaths = new List<string>();
+			for (var i = 0; i < EditorSceneManager.sceneCount; i++)
+				scenePaths.Add(EditorSceneManager.GetSceneAt(i).path);
+
+			PreviousScene = string.Join(":", scenePaths);
+
 			if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
 			{
 				try
@@ -82,27 +76,30 @@ static class SceneAutoLoader
 				{
 					Debug.LogError(string.Format("error: scene not found: {0}", MasterScene));
 					EditorApplication.isPlaying = false;
- 
 				}
 			}
 			else
 			{
-				// User cancelled the save operation -- cancel play as well.
 				EditorApplication.isPlaying = false;
 			}
 		}
  
-		// isPlaying check required because cannot OpenScene while playing
-		if (!EditorApplication.isPlaying && !EditorApplication.isPlayingOrWillChangePlaymode)
+		if (!EditorApplication.isPlayingOrWillChangePlaymode)
 		{
-			// User pressed stop -- reload previous scene.
-			try
+			var scenePaths = PreviousScene.Split(':');
+			for (var i = 0; i < scenePaths.Length; i++)
 			{
-				EditorSceneManager.OpenScene(PreviousScene);
-			}
-			catch
-			{
-				Debug.LogError(string.Format("error: scene not found: {0}", PreviousScene));
+				var scenePath = scenePaths[i];
+				var sceneMode = i == 0 ? OpenSceneMode.Single : OpenSceneMode.Additive;
+
+				try
+				{
+					EditorSceneManager.OpenScene(scenePath, sceneMode);
+				}
+				catch
+				{
+					Debug.LogError(string.Format("error: scene not found: {0}", scenePath));
+				}
 			}
 		}
 	}
@@ -126,7 +123,7 @@ static class SceneAutoLoader
  
 	private static string PreviousScene
 	{
-		get { return EditorPrefs.GetString(cEditorPrefPreviousScene, EditorSceneManager.GetActiveScene().path); }
+		get { return EditorPrefs.GetString(cEditorPrefPreviousScene, string.Empty); }
 		set { EditorPrefs.SetString(cEditorPrefPreviousScene, value); }
 	}
 }
