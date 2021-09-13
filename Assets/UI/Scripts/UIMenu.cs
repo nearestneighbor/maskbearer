@@ -73,6 +73,9 @@ public class UIMenu : UIManager.UIBehaviour
     private IEnumerator OnPlayClickCoroutine()
     {
         yield return Get<UICurtain>().ShowAndWait();
+
+        Fader.instance.FadeIn();
+
         Hide();
         Main.Game.StartUp(_levelName);
     }

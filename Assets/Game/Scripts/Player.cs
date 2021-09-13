@@ -258,7 +258,6 @@ public class Player : MonoBehaviour
         if (_actions != null)
         {
             _actions.Player.Attack.performed -= OnAttack;
-            _actions.Player.Focus.performed -= OnFocus;
             _actions.Player.Jump.performed -= OnJump;
         }
 
@@ -267,7 +266,6 @@ public class Player : MonoBehaviour
         if (_actions != null)
         {
             _actions.Player.Attack.performed += OnAttack;
-            _actions.Player.Focus.performed += OnFocus;
             _actions.Player.Jump.performed += OnJump;
         }
     }
@@ -308,16 +306,6 @@ public class Player : MonoBehaviour
         _attackPressed = true;
     }
 
-    public bool Focusing { get; private set; }
-    private void OnFocus(InputAction.CallbackContext ctx)
-    {
-        Focusing = ctx.ReadValueAsButton();
-        if (Focusing)
-            PlayerData.Instance.StartRestoringHealth(1);
-        else
-            PlayerData.Instance.StopRestoringHealth();
-    }
-
     private bool _jumping;
     private bool _justJumped;
     private void OnJump(InputAction.CallbackContext ctx)
@@ -339,7 +327,6 @@ public class Player : MonoBehaviour
     }
     void ProcessAnimations()
     {
-        // Debug.Log(velocity);
         animator.SetFloat("vertSpeed", velocity.y);
         animator.SetBool("isRunning", velocity.x!=0.0f);
         animator.SetBool("isGrounded", controller.collisions.below);
