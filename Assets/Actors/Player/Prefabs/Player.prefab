@@ -292,13 +292,13 @@ GameObject:
   m_Component:
   - component: {fileID: 7816069567403119005}
   - component: {fileID: 1611405151253509556}
-  m_Layer: 7
+  m_Layer: 28
   m_Name: playerlightWastes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7816069567403119005
 Transform:
   m_ObjectHideFlags: 0
