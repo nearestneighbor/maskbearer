@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -39,6 +40,12 @@ public class HealthSegment
     /// </summary>
     [SerializeField]
     public float DrainRate = 10;
+    public bool AllDraining => PlayerData.Instance.HealthSegments.All(segment => segment.Draining || segment.Empty);
+    /// <summary>
+    /// The rate at which the segment drains when all other segments are also draining.
+    /// </summary>
+    [SerializeField]
+    public float DrainRateAll = 20;
     /// <summary>
     /// Whether this health segment is full.
     /// </summary>
@@ -62,7 +69,7 @@ public class HealthSegment
     {
         if (_draining)
         {
-            _currentSegmentSize -= DrainRate * deltaTime;
+            _currentSegmentSize -= (AllDraining ? DrainRateAll : DrainRate) * deltaTime;
             if (Empty)
             {
                 OnDeplete();
