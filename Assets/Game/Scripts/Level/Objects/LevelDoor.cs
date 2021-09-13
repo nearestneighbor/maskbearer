@@ -228,7 +228,12 @@ public class LevelDoor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        SendMessageUpwards(
+        if (other.GetComponentInParent<Player>() == null)
+            return;
+
+        Fader.instance.FadeIn();
+        Fader.instance.FadedIn += Action =>
+                SendMessageUpwards(
             LevelTransitionMessage.Name,
             new LevelTransitionMessage(
                 _levelName,
