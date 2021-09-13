@@ -117,7 +117,7 @@ static class SceneAutoLoader
  
 	private static string MasterScene
 	{
-		get { return EditorPrefs.GetString(cEditorPrefMasterScene, "Master.unity"); }
+		get { return EditorPrefs.GetString(cEditorPrefMasterScene, "Game/Scenes/Launcher.unity"); }
 		set { EditorPrefs.SetString(cEditorPrefMasterScene, value); }
 	}
  

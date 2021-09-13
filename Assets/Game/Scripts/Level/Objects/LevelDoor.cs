@@ -5,20 +5,90 @@ using System.Linq;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
+[ExecuteAlways]
 [RequireComponent(typeof(BoxCollider2D))]
-public class LevelTransition : MonoBehaviour
+[RequireComponent(typeof(SpriteRenderer))]
+public class LevelDoor : MonoBehaviour
 {
-    #region Inspector
+    [HideInInspector] [SerializeField] private Sprite _sprite;
 
-    [Label("Level")]
+    private void Awake()
+    {
+        if (_levelName == null || _levelName == string.Empty)
+            _levelName = gameObject.scene.name;
+
+        if (_doorName == null || _doorName == string.Empty)
+            _doorName = gameObject.name;
+    }
+
+    private void Start()
+    {
+        var collider = GetComponent<BoxCollider2D>();
+        collider.hideFlags = HideFlags.HideInInspector;
+        collider.isTrigger = true;
+
+        var sprite = GetComponent<SpriteRenderer>();
+        sprite.hideFlags = HideFlags.HideInInspector;
+        sprite.color = Color.green;
+        sprite.sprite = _sprite;
+    }
+
+    #region Position
+
+    private enum Edge { Top, Right, Bottom, Left }
+
+    [SerializeField] private Edge _edge;
+    [SerializeField] private float _size = 2;
+    [SerializeField] private float _position;
+
+    private void OnValidate()
+    {
+        var bounds = GetComponentInParent<LevelBounds>();
+        if (bounds == null)
+            return;
+
+        var hor = _edge == Edge.Top || _edge == Edge.Bottom;
+
+        var hhalf = (bounds.Size.x + 1) / 2f;
+        var hsign = _edge == Edge.Right ? +1 : -1;
+
+        var vhalf = (bounds.Size.y + 1) / 2f;
+        var vsign = _edge == Edge.Top ? +1 : -1;
+
+        _size = Mathf.RoundToInt(_size * 2) / 2f;
+        _size = Mathf.Clamp(_size, 1, hor ? bounds.Size.x : bounds.Size.y);
+
+        var limit = hhalf - _size/2f - 1/2f;
+        _position = Mathf.RoundToInt(_position * 4) / 4f;
+        _position = Mathf.Clamp(_position, -limit, +limit);
+
+        transform.localPosition = new Vector3(hor ? _position : hsign * hhalf, hor ? vsign * vhalf : _position, -1);
+        transform.localScale = new Vector3(hor ? _size : 1, hor ? 1 : _size, 1);
+    }
+
+    private void Update()
+    {
+        if (Application.isPlaying)
+            return;
+
+        OnValidate();
+    }
+
+    #endregion
+
+    #region Transition
+
+    [Label("To Level")]
     [Dropdown("GetSceneNames")]
     [SerializeField] private string _levelName;
 
-    [ShowIf("HasSceneTrue")]
-    [Label("Transition")]
+    [FormerlySerializedAs("_transitionName")]
+    [ShowIf("HasSceneTrueAndHasTransitions")]
+    [Label("To Door")]
     [Dropdown("GetSceneTransitions")]
-    [SerializeField] private string _transitionName;
+    [SerializeField] private string _doorName;
 
     [Button]
     [ShowIf("HasSceneFalse")]
@@ -44,6 +114,7 @@ public class LevelTransition : MonoBehaviour
         #endif
     }
 
+    private bool HasSceneTrueAndHasTransitions() => HasSceneTrue() && GetSceneTransitions().Count > 0;
     private bool HasSceneTrueAndSelf() => HasSceneTrue() && gameObject.scene.name != _levelName;
     private bool HasSceneFalse() => !HasSceneTrue();
     private bool HasSceneTrue()
@@ -61,7 +132,7 @@ public class LevelTransition : MonoBehaviour
     private List<string> GetSceneTransitions()
     {
         var transitions = 
-            FindObjectsOfType<LevelTransition>()
+            FindObjectsOfType<LevelDoor>()
             .Where(x => x.gameObject.scene.name == _levelName)
             .Where(x => x != this)
             .Select(x => x.name);
@@ -73,12 +144,12 @@ public class LevelTransition : MonoBehaviour
     {
         var result = new List<string>();
         
-        // Start from 2 because we skip Launcher & Template scenes
-        for (var i = 2; i < SceneManager.sceneCountInBuildSettings; i++)
+        for (var i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
         {
             var path = SceneUtility.GetScenePathByBuildIndex(i);
             var name = Path.GetFileNameWithoutExtension(path);
-            result.Add(name);
+            if (i > 2 || name == gameObject.scene.name)
+                result.Add(name);
         }
 
         return result;
@@ -104,8 +175,8 @@ public class LevelTransition : MonoBehaviour
             return;
         #endif
 
-         var target = FindObjectsOfType<LevelTransition>().FirstOrDefault(x
-                => x.name == _transitionName
+         var target = FindObjectsOfType<LevelDoor>().FirstOrDefault(x
+                => x.name == _doorName
                 && x.gameObject.scene.name == _levelName
                 && x.gameObject.activeInHierarchy
         );
@@ -132,34 +203,24 @@ public class LevelTransition : MonoBehaviour
 
     #endregion
 
+
+
+
+
+
+
+
+
     public void Place(Player player, LevelTransitionMessage.Direction direction)
     {
         var offset = Vector2.zero;
 
-        switch (direction)
+        switch (_edge)
         {
-            case LevelTransitionMessage.Direction.Left:
-                offset = Vector2.right;
-                break;
-            
-            case LevelTransitionMessage.Direction.Right:
-                offset = Vector2.left;
-                break;
-
-            case LevelTransitionMessage.Direction.Down:
-                offset = Vector2.down;
-                break;
-            
-            case LevelTransitionMessage.Direction.UpLeft:
-                offset = new Vector2(-2, +3);
-                break;
-            
-            case LevelTransitionMessage.Direction.UpRight:
-                offset = new Vector2(+2, +3);
-                break;
-            
-            default:
-                throw new NotImplementedException();
+            case Edge.Left: offset = Vector2.right; break;
+            case Edge.Right: offset = Vector2.left; break;
+            case Edge.Top: offset = Vector2.down; break;
+            case Edge.Bottom: offset = new Vector2(direction == LevelTransitionMessage.Direction.UpLeft ? -2 : +2, +3); break;
         }
 
         player.transform.position = transform.position + (Vector3)offset;
@@ -171,7 +232,7 @@ public class LevelTransition : MonoBehaviour
             LevelTransitionMessage.Name,
             new LevelTransitionMessage(
                 _levelName,
-                _transitionName,
+                _doorName,
                 GetEnterDirection(other)
             )
         );
@@ -179,9 +240,8 @@ public class LevelTransition : MonoBehaviour
 
     private LevelTransitionMessage.Direction GetEnterDirection(Collider2D other)
     {
-        // TODO: Change method of defining orientation
-        var horizontal = transform.localScale.x > transform.localScale.y;
-        if (horizontal)
+        var vertical = _edge == Edge.Top || _edge == Edge.Bottom;
+        if (vertical)
         {
             if (other.transform.position.y > transform.position.y)
                 return LevelTransitionMessage.Direction.Down;
@@ -193,7 +253,7 @@ public class LevelTransition : MonoBehaviour
         }
         else
         {
-            if (other.transform.position.x < transform.position.x)
+            if (_edge == Edge.Right)
                 return LevelTransitionMessage.Direction.Left;
 
             return LevelTransitionMessage.Direction.Right;

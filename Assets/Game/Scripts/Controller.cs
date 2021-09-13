@@ -21,7 +21,7 @@ public class Controller : MonoBehaviour
     new BoxCollider2D collider;
 
     RaycastHit2D[] verticalHits, horizontalHits;
-    void Start(){
+    void Awake(){
         CalculateRaySpacing();
         verticalHits = new RaycastHit2D[verticalRayCount];
         horizontalHits = new RaycastHit2D[horizontalRayCount];

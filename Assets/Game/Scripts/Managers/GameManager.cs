@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         // ... initialize player ...
         if (options.transitionName != null)
         {
-            var transition = FindObjectsOfType<LevelTransition>().FirstOrDefault(x => x.name == options.transitionName);
+            var transition = FindObjectsOfType<LevelDoor>().FirstOrDefault(x => x.name == options.transitionName);
             if (transition == null)
                 throw new Exception();
 
