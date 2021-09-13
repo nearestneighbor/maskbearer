@@ -327,7 +327,6 @@ public class Player : MonoBehaviour
     }
     void ProcessAnimations()
     {
-        Debug.Log(velocity);
         animator.SetFloat("vertSpeed", velocity.y);
         animator.SetBool("isRunning", velocity.x!=0.0f);
         animator.SetBool("isGrounded", controller.collisions.below);
